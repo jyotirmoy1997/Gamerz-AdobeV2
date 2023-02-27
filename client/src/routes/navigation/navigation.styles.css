@@ -1,0 +1,20 @@
+.navigation-wrapper{
+    display: flex;
+    /* background-color: chocolate; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+    justify-content: space-between;
+}
+
+.navigation-links{
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navigation-links a{
+    text-decoration: none;
+    color: black;
+}

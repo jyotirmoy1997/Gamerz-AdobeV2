@@ -1,0 +1,1 @@
+export const createTokenUser = (user) => ({userId : user._id, name : user.name})
