@@ -8,6 +8,14 @@ const UserSchema = new mongoose.Schema({
         minlength : 3,
         maxlength : 20
     },
+    about : {
+        type : String,
+        default : ''
+    },
+    interests : {
+        type : [String],
+        default : []
+    },
     email : {
         type : String,
         required : true,

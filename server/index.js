@@ -5,6 +5,7 @@ import connectDB from "./db/connect.js"
 import dotenv from "dotenv"
 import postRouter from "./routes/postsRoute.js"
 import authRouter from "./routes/authRoute.js"
+import userRouter from "./routes/userRoute.js"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 
@@ -27,6 +28,7 @@ server.get("/", (req, res) => {
 
 server.use('/api/v1/posts', postRouter)
 server.use('/api/v1/auth', authRouter)
+server.use('/api/v1/users', userRouter)
 
 const PORT = process.env.PORT || 5000
 

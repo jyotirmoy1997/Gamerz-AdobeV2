@@ -3,6 +3,10 @@ import Button from "../button/button.component"
 import GoogleButton from "react-google-button"
 import { useState } from "react"
 import axios from "axios"
+import { useSelector, useDispatch } from "react-redux"
+import { selectUser } from "../../features/user/userSlice"
+import { addUser } from "../../features/user/userSlice"
+import { useNavigate } from "react-router"
 // axios.defaults.withCredentials = true;
 
 const initialState = {
@@ -13,6 +17,10 @@ const initialState = {
 const SignInForm = () => {
     const [formData, setFormData] = useState(initialState)
     const [errorMessage, setErrorMessage] = useState(null)
+
+    const navigate = useNavigate();
+
+    const dispatch = useDispatch()
 
     const onChangeHandler = (event) => {
         setFormData({...formData, [event.target.name] : event.target.value})
@@ -25,7 +33,9 @@ const SignInForm = () => {
             const response = await axios.post('http://localhost:5000/api/v1/auth/sign-in', 
             {...formData}, 
             { withCredentials: true })
-            console.log(response)
+            console.log(response.data.user)
+            dispatch(addUser(response.data.user))
+            navigate('/user/timeline')
             
         } catch (error) {
             console.log(error)

@@ -4,6 +4,7 @@ import Navigation from './routes/navigation/navigation.routes'
 import Home from './routes/home/home.routes'
 import UpdatePost from './components/update-post/update-post.component'
 import LogIn from './components/log-in/log-in.component'
+import TimeLine from './components/timeline/timeline.component'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
       <Route path='/' element={<Navigation/>}>
         <Route index={true} element={<Home />} />
         <Route path='/log-in' element={<LogIn />} />
+        <Route path='/user/timeline' element={<TimeLine />} />
         <Route path='/posts'>
           <Route path=':postId' element={<UpdatePost />} />
         </Route>

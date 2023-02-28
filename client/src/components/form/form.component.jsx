@@ -4,9 +4,9 @@ import { addNewPost } from "../../features/posts/postSlice"
 import axios from "axios"
 import "./form.styles.css"
 
-const Form = () => {
+const Form = ({userId}) => {
     const [formData, setFormData] = useState({
-        creator : "",
+        creator : userId,
         title : "",
         message : ""
     })
@@ -21,12 +21,12 @@ const Form = () => {
         <div className="form-wrapper">
             <h2>Share your Thoughts !</h2>
             <form>
-                <label htmlFor="" >Creator</label>
+                {/* <label htmlFor="" >Creator</label>
                 <input 
                     type="text" 
                     value={formData.creator} 
                     onChange={(e) => setFormData({...formData, creator : e.target.value})} 
-                />
+                /> */}
                 <label htmlFor="">Title</label>
                 <input 
                     type="text" 
