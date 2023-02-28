@@ -3,16 +3,26 @@ import { Fragment } from "react"
 import logo from "../../assets/LOGO.png"
 import Button from "../../components/button/button.component"
 import "./navigation.styles.css"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../features/user/userSlice"
+import { logOutUser } from "../../features/user/userSlice"
+import { useNavigate } from "react-router-dom"
 
 const Navigation = () => {
     const user = useSelector(selectUser)
-    const userAvailable = Object.keys(user).length !== 0
+    const userAvailable = user.status === "loggedOut" ? false : true
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const logOutHandler = () => {
+        dispatch(logOutUser())
+        navigate('/')
+    }
     
     const userInfo = <Fragment>
         <Link to="/user/timeline">Timeline</Link>
-        <Button content={"Log-Out"} />
+        <Button onClick={logOutHandler} content={"Log-Out"} />
     </Fragment> 
 
     return(

@@ -41,3 +41,11 @@ export const signUp = async (req, res) => {
         res.status(400).json({msg : "Something went wrong"})
     }
 }
+
+export const logOut = (req, res) => {
+    res.cookie("token", "", {
+      httpOnly: true,
+      expires: new Date(Date.now()),
+    });
+    res.status(200).json({ msg: "Logged Out" });
+  };

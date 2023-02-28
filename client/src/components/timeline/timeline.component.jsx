@@ -1,18 +1,25 @@
 import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../features/user/userSlice"
-import Form from "../form/form.component"
+import UserInfo from "../user-info/user-info.component"
 
 const TimeLine = () => {
-    const user = useSelector(selectUser)
+    const userInfo = useSelector(selectUser)
+    console.log(userInfo)
+
+    let content;
+
+    if(userInfo.status === "pending"){
+        content = <h2>Loading...</h2>
+    }
+    else if(userInfo.status === "loggedIn"){
+        content = <UserInfo user={userInfo.user} />
+    }
+    
     // console.log(user)
     return(
         <div>
-            <div>
-                <h3>Name : {user.name}</h3>
-                <h4>About : {user.about ? user.about : "Update Info"}</h4>
-                <p>Interests : {user.interests.length === 0 ?  "Add Interests" : user.interests}</p>
-            </div>
-            <Form creator={user._id} />
+            <h1>TimeLine</h1>
+            {content}
         </div>
     )
 }

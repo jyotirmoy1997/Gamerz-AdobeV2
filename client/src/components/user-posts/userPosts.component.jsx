@@ -6,7 +6,7 @@ import { useNavigate } from "react-router"
 import axios from "axios"
 
 
-const Posts = () => {
+const UserPosts = ({userId}) => {
     const postList = useSelector(selectAllPosts)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -15,11 +15,7 @@ const Posts = () => {
         dispatch(fetchPosts())
     }, [dispatch])
 
-    // console.log("Postlists",postList)
-
-    // useEffect(() => {
-    //     axios.get("http://localhost:5000/api/v1/posts").then((res) => console.log(res.data))
-    // })
+    const userPosts = postList.filter((post) => post.creator === userId) 
 
     const updatePostHandler = (postId) => {
         console.log(postId)
@@ -37,7 +33,7 @@ const Posts = () => {
     return(
         <div>
             {
-                postList.map((post) => {
+                userPosts.map((post) => {
                     return(
                         <div key={post._id}>
                             <h3>{post.title}</h3>
@@ -53,4 +49,4 @@ const Posts = () => {
     )
 }
 
-export default Posts
+export default UserPosts

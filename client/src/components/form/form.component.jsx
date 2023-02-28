@@ -4,9 +4,9 @@ import { addNewPost } from "../../features/posts/postSlice"
 import axios from "axios"
 import "./form.styles.css"
 
-const Form = ({userId}) => {
+const Form = ({creator}) => {
     const [formData, setFormData] = useState({
-        creator : userId,
+        creator : creator,
         title : "",
         message : ""
     })
@@ -17,6 +17,7 @@ const Form = ({userId}) => {
         console.log("Form Data ", formData)
         dispatch(addNewPost({...formData}))
     }
+    console.log(creator)
     return(
         <div className="form-wrapper">
             <h2>Share your Thoughts !</h2>

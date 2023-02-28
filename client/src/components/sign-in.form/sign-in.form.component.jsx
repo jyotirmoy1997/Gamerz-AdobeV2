@@ -5,8 +5,8 @@ import { useState } from "react"
 import axios from "axios"
 import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../features/user/userSlice"
-import { addUser } from "../../features/user/userSlice"
 import { useNavigate } from "react-router"
+import { signInUser } from "../../features/user/userSlice"
 // axios.defaults.withCredentials = true;
 
 const initialState = {
@@ -30,11 +30,7 @@ const SignInForm = () => {
         event.preventDefault()
         console.log(formData)
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/auth/sign-in', 
-            {...formData}, 
-            { withCredentials: true })
-            console.log(response.data.user)
-            dispatch(addUser(response.data.user))
+            dispatch(signInUser(formData))
             navigate('/user/timeline')
             
         } catch (error) {
