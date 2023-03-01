@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux"
 import { selectUser } from "../../features/user/userSlice"
 import UserInfo from "../user-info/user-info.component"
+import ReactionComponent from "../reactions/reaction.component"
 
 const TimeLine = () => {
     const userInfo = useSelector(selectUser)
@@ -19,7 +20,10 @@ const TimeLine = () => {
     return(
         <div>
             <h1>TimeLine</h1>
-            {content}
+            <ReactionComponent 
+            post={"63ff247155865db613c83163"} 
+            user={"63ff277355865db613c83174"} />
+            {/* {content} */}
         </div>
     )
 }

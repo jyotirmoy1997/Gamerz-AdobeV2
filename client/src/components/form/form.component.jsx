@@ -17,7 +17,7 @@ const Form = ({creator}) => {
         console.log("Form Data ", formData)
         dispatch(addNewPost({...formData}))
     }
-    console.log(creator)
+    // console.log(creator)
     return(
         <div className="form-wrapper">
             <h2>Share your Thoughts !</h2>

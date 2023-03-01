@@ -22,6 +22,7 @@ const Navigation = () => {
     
     const userInfo = <Fragment>
         <Link to="/user/timeline">Timeline</Link>
+        <Link to="/user/newsfeed">News Feed</Link>
         <Button onClick={logOutHandler} content={"Log-Out"} />
     </Fragment> 
 
