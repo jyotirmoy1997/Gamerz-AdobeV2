@@ -23,8 +23,6 @@ const NewsFeed = () => {
         <div>
             {
                 userNewsFeedPosts.map((post) => {
-                    const postReaction = reactionList.filter((reaction) => reaction.post === post._id)[0]
-                    console.log("hit")
                     return(
                         <div key={post._id}>
                             <h3>{post.title}</h3>
@@ -33,7 +31,7 @@ const NewsFeed = () => {
                             <ReactionComponent 
                                 post={post._id}
                                 user={user.userId}
-                                postReaction={postReaction} 
+                                reactionList={reactionList} 
                             />
                         </div>
                     )

@@ -1,4 +1,5 @@
 import Post from "../post/post.component"
+import UserPosts from "../user-posts/userPosts.component"
 
 const UserInfo = ({user}) => {
     return(

@@ -60,14 +60,15 @@ const reactionSlice = createSlice({
         })
         .addCase(fetchReactions.fulfilled, (state, action) => {
             state.status = "succeded",
-            state.reactionsArray = action.payload
+            state.reactionsArray = action.payload.reactions
         })
         .addCase(fetchReactions.rejected, (state, action) =>{
             state.status = 'failed'
             state.error = action.error.message
         })
         .addCase(addNewReaction.fulfilled, (state, action) => {
-            state.reactionsArray.push(action.payload)
+            console.log(action.payload.reaction)
+            state.reactionsArray.push(action.payload.reaction)
         })
         .addCase(deleteReaction.fulfilled, (state, action) => {
             return
@@ -75,7 +76,7 @@ const reactionSlice = createSlice({
     }
 })
 
-export const selectAllReactions = (state) => state.reactions.reactionsArray.reactions
+export const selectAllReactions = (state) => state.reactions.reactionsArray
 export const reactionListStatus = (state) => state.reactions.status
 
 export default reactionSlice.reducer

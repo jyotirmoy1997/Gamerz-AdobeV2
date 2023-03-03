@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addNewPost } from "../../features/posts/postSlice"
+import { fetchReactions } from "../../features/reactions/reactionSlice"
 import axios from "axios"
 import "./post.styles.css"
 
@@ -15,7 +16,9 @@ const Post = ({creator}) => {
     const onSubmitHandler = async (event) => {
         event.preventDefault()
         console.log("Form Data ", formData)
-        dispatch(addNewPost({...formData}, {dispatch}))
+        dispatch(addNewPost({...formData},{dispatch}))
+        dispatch(fetchReactions())
+
     }
     return(
         <div className="form-wrapper">

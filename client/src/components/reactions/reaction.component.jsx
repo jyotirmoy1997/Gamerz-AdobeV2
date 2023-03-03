@@ -2,9 +2,20 @@ import { useSelector, useDispatch } from "react-redux"
 import { fetchReactions } from "../../features/reactions/reactionSlice"
 import axios from "axios"
 
-const ReactionComponent = ({post, user, postReaction}) => {
-    console.log("Post reaction ", postReaction)
-    // console.log(post, user)
+const ReactionComponent = ({post, user, reactionList}) => {
+
+    const postReaction = reactionList.filter((reaction) => reaction.post === post)[0]
+    // console.log("Post", post)
+    // console.log("ReactionList", reactionList)
+    // console.log("PostReaction", postReaction)
+
+    let content;
+    if(!postReaction){
+        return(
+            <h3>loading...</h3>
+        )
+    }
+
     const likeSubmitHandler = async () => {
         const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateLikes", {
             post,

@@ -1,13 +1,10 @@
 import "./sign-in.form.styles.css"
 import Button from "../button/button.component"
-import GoogleButton from "react-google-button"
 import { useState } from "react"
-import axios from "axios"
-import { useSelector, useDispatch } from "react-redux"
-import { selectUser } from "../../features/user/userSlice"
+import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router"
 import { signInUser } from "../../features/user/userSlice"
-// axios.defaults.withCredentials = true;
+import { fetchReactions } from "../../features/reactions/reactionSlice"
 
 const initialState = {
     email : '',

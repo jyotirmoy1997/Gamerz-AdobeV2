@@ -7,6 +7,6 @@ export const store = configureStore({
     reducer : {
         posts : postsReducer,
         users : userReducer,
-        reactions :reactionReducer
+        reactions : reactionReducer
     }
 })
