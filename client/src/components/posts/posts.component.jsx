@@ -15,12 +15,6 @@ const Posts = () => {
         dispatch(fetchPosts())
     }, [dispatch])
 
-    // console.log("Postlists",postList)
-
-    // useEffect(() => {
-    //     axios.get("http://localhost:5000/api/v1/posts").then((res) => console.log(res.data))
-    // })
-
     const updatePostHandler = (postId) => {
         console.log(postId)
         navigate(`/posts/${postId}`)
@@ -31,7 +25,6 @@ const Posts = () => {
         if(res){
             dispatch(deletePost(postId))
         }
-        // navigate(`/posts/${postId}`)
     }
 
     return(

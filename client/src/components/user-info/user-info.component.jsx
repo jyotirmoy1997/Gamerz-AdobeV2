@@ -1,4 +1,4 @@
-import Form from "../form/form.component"
+import Post from "../post/post.component"
 import UserPosts from "../user-posts/userPosts.component"
 
 const UserInfo = ({user}) => {
@@ -9,7 +9,7 @@ const UserInfo = ({user}) => {
             <h4>About : {user.about ? user.about : "Update Info"}</h4>
             <p>Interests : {user.interests.length === 0 ?  "Add Interests" : user.interests}</p>
         </div>
-        <Form creator={user.userId} />
+        <Post creator={user.userId} />
         <UserPosts userId={user.userId}/>
     </div>
     )

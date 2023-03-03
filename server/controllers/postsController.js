@@ -30,7 +30,7 @@ export const getPosts =  async (req, res) => {
 
 // Create a post
 export const createPost = async (req, res) => {
-    console.log(req.body)
+    console.log("Create Hit", req.body)
     try {
         const post = await PostMessage.create({...req.body})
         res.status(201).json(post)

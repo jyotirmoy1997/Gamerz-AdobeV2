@@ -20,10 +20,7 @@ const TimeLine = () => {
     return(
         <div>
             <h1>TimeLine</h1>
-            <ReactionComponent 
-            post={"63ff247155865db613c83163"} 
-            user={"63ff277355865db613c83174"} />
-            {/* {content} */}
+            {content}
         </div>
     )
 }

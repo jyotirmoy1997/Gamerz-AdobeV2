@@ -1,9 +1,3 @@
-import Post from "../../components/post/post.component"
-import Posts from "../../components/posts/posts.component"
-import Form from "../../components/form/form.component"
-
-import bg from "../../../assets/cool-background.png"
-
 import { useNavigate } from "react-router"
 
 import "./home.styles.css"

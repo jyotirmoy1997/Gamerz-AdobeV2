@@ -1,5 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { addNewReaction } from "../reactions/reactionSlice";
+
 
 
 const initialState = {
@@ -13,8 +15,11 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
     return response.data
 })
 
-export const addNewPost = createAsyncThunk('posts/addNewPost', async (newPost) => {
+export const addNewPost = createAsyncThunk('posts/addNewPost', async (newPost, {dispatch}) => {
     const response = await axios.post("http://localhost:5000/api/v1/posts", newPost)
+    console.log(response.data._id)
+    const postId = response.data
+    dispatch(addNewReaction(postId))
     return response.data
 })
 
@@ -42,7 +47,7 @@ const postSlice = createSlice({
         })
         .addCase(fetchPosts.fulfilled, (state, action) => {
             state.status = "succeded",
-            // console.log(action.payload)
+            console.log(action.payload)
             state.postsArray = action.payload
         })
         .addCase(fetchPosts.rejected, (state, action) =>{

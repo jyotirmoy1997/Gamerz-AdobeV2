@@ -1,7 +1,14 @@
 import Reactions from "../model/reaction.js"
 
-export const getSinglePostReaction = (req, res) => {
-    res.send("Hit")
+export const getAllReactions = async(req, res) => {
+    try {
+        const reactions = await Reactions.find({})
+        res.status(200).json({reactions : reactions})
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({msg : "Something Went Wrong"})
+    }
+
 }
 
 export const createReactions = async(req, res) => {
@@ -101,5 +108,16 @@ export const updateHearts = async (req, res) => {
         console.log(error)
     return res.status(404).json({msg : "Something Went Wrong"})
     }
-    // res.status(200).json({msg : "Update"})
+
+}
+
+export const deleteReaction = async (req, res) => {
+    const {post} = req.body
+    try {
+        const reaction = await Reactions.findOne({post})
+        await reaction.remove()
+        res.status(200).json({msg : "Deleted"})
+    } catch (error) {
+        res.status(404).json({msg : "Something Went Wrong"})
+    }
 }
