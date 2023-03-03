@@ -31,7 +31,15 @@ export const updateLikes = async (req, res) => {
         console.log(reactionUser)
         const existingLike = reactionUser.likes.find((likeUser) => likeUser == user)
         if(existingLike){
-            return res.status(400).json({msg : "Existing Like"})
+            const reaction = await Reactions.findOneAndUpdate(
+                {post},
+                {
+                    $pull : {likes : user},
+                    $inc : {likeCount : -1}
+                },
+                {new : true}
+                )
+         return res.status(200).json({reaction})
         }
     } catch (error) {
         console.log(error)
@@ -59,7 +67,15 @@ export const updateRockets = async (req, res) => {
         console.log(reactionUser)
         const existingRocket = reactionUser.rockets.find((likeUser) => likeUser == user)
         if(existingRocket){
-            return res.status(400).json({msg : "Existing Rockets"})
+            const reaction = await Reactions.findOneAndUpdate(
+                {post},
+                {
+                    $pull : {rockets : user},
+                    $inc : {rocketCount : -1}
+                },
+                {new : true}
+                )
+         return res.status(200).json({reaction})
         }
     } catch (error) {
         console.log(error)
@@ -88,7 +104,16 @@ export const updateHearts = async (req, res) => {
         console.log(reactionUser)
         const existingHeart = reactionUser.hearts.find((likeUser) => likeUser == user)
         if(existingHeart){
-            return res.status(400).json({msg : "Existing Heart"})
+            const reaction = await Reactions.findOneAndUpdate(
+                {post},
+                {
+                    $pull : {hearts : user},
+                    $inc : {heartCount : -1}
+                },
+                {new : true}
+                )
+            console.log(reaction)
+         return res.status(200).json({reaction})
         }
     } catch (error) {
         console.log(error)
@@ -112,12 +137,16 @@ export const updateHearts = async (req, res) => {
 }
 
 export const deleteReaction = async (req, res) => {
-    const {post} = req.body
+    console.log("Hit");
+    const { id } = req.params;
+    console.log(id)
+    // res.send("Okay")
     try {
-        const reaction = await Reactions.findOne({post})
-        await reaction.remove()
-        res.status(200).json({msg : "Deleted"})
+        const reaction = await Reactions.findOne({ post : id });
+        console.log(reaction);
+        await reaction.remove();
+        res.status(200).json({ msg: "Deleted" });
     } catch (error) {
-        res.status(404).json({msg : "Something Went Wrong"})
+        res.status(404).json({ msg: "Something Went Wrong" });
     }
-}
+};

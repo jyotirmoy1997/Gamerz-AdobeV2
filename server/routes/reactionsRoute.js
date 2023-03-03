@@ -15,7 +15,7 @@ reactionRouter.post("/createReactions", createReactions)
 reactionRouter.patch("/updateLikes", updateLikes)
 reactionRouter.patch("/updateRockets", updateRockets)
 reactionRouter.patch("/updateHearts", updateHearts)
-reactionRouter.delete("./deleteReaction", deleteReaction)
+reactionRouter.delete("/deleteReaction/:id", deleteReaction)
 
 
 export default reactionRouter

@@ -1,16 +1,26 @@
+import { useSelector, useDispatch } from "react-redux"
+import { fetchReactions } from "../../features/reactions/reactionSlice"
 import axios from "axios"
 
-const ReactionComponent = ({post, user}) => {
-    console.log(post, user)
+const ReactionComponent = ({post, user, postReaction}) => {
+    console.log("Post reaction ", postReaction)
+    // console.log(post, user)
     const likeSubmitHandler = async () => {
-        const response = await axios.post("http://localhost:5000/api/v1/reactions/updateLikes", {
+        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateLikes", {
             post,
             user
         })
         console.log(response)
     }
     const heartSubmitHandler = async () => {
-        const response = await axios.post("http://localhost:5000/api/v1/reactions/updateHearts", {
+        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateHearts", {
+            post,
+            user
+        })
+        console.log(response)
+    }
+    const rocketSubmitHandler = async () => {
+        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateRockets", {
             post,
             user
         })
@@ -18,9 +28,17 @@ const ReactionComponent = ({post, user}) => {
     }
     return(
         <div>
-            <button onClick={likeSubmitHandler}>Like</button>
-            <button onClick={heartSubmitHandler}>Heart</button>
-            <button>Rocket</button>
+            <button onClick={likeSubmitHandler}>
+                <span>Like</span>
+                <span>{postReaction.likeCount}</span>
+            </button>
+            <button onClick={heartSubmitHandler}> 
+                <span>Heart</span>
+                <span>{postReaction.heartCount}</span>
+            </button>
+            <button onClick={rocketSubmitHandler}> 
+                <span>Rocket</span>
+                <span>{postReaction.rocketCount}</span></button>
         </div>
     )
 }

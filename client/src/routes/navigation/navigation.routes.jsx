@@ -4,13 +4,13 @@ import logo from "../../assets/LOGO.png"
 import Button from "../../components/button/button.component"
 import "./navigation.styles.css"
 import { useSelector, useDispatch } from "react-redux"
-import { selectUser } from "../../features/user/userSlice"
+import { selectUser, userStatus } from "../../features/user/userSlice"
 import { logOutUser } from "../../features/user/userSlice"
 import { useNavigate } from "react-router-dom"
 
 const Navigation = () => {
-    const user = useSelector(selectUser)
-    const userAvailable = user.status === "loggedOut" ? false : true
+    const userLogStatus = useSelector(userStatus)
+    const userAvailable = userLogStatus === "loggedOut" ? false : true
 
     const navigate = useNavigate()
     const dispatch = useDispatch()

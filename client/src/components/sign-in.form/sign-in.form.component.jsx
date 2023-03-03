@@ -28,7 +28,7 @@ const SignInForm = () => {
 
     const onSubmitHandler = async (event) => {
         event.preventDefault()
-        console.log(formData)
+        // console.log(formData)
         try {
             dispatch(signInUser(formData))
             navigate('/user/timeline')

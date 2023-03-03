@@ -44,10 +44,8 @@ export const updateReaction = createAsyncThunk('posts/updatePosts', async ({post
 })
 
 export const deleteReaction = createAsyncThunk('posts/deleteReaction', async (postId) => {
-    console.log(postId)
-    const response = await axios.delete("http://localhost:5000/api/v1/reactions/updateRockets", {
-        post : postId
-    })
+    console.log("Delete Reaction", postId)
+    const response = await axios.delete(`http://localhost:5000/api/v1/reactions/deleteReaction/${postId}`)
     return response.data
 })
 
@@ -77,6 +75,7 @@ const reactionSlice = createSlice({
     }
 })
 
-export const selectAllReactions = (state) => state.reactions.reactionsArray
+export const selectAllReactions = (state) => state.reactions.reactionsArray.reactions
+export const reactionListStatus = (state) => state.reactions.status
 
 export default reactionSlice.reducer

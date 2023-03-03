@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { addNewReaction } from "../reactions/reactionSlice";
-
+import { deleteReaction } from "../reactions/reactionSlice";
 
 
 const initialState = {
@@ -17,22 +17,19 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 
 export const addNewPost = createAsyncThunk('posts/addNewPost', async (newPost, {dispatch}) => {
     const response = await axios.post("http://localhost:5000/api/v1/posts", newPost)
-    console.log(response.data._id)
     const postId = response.data
     dispatch(addNewReaction(postId))
     return response.data
 })
 
 export const updatePost = createAsyncThunk('posts/updatePosts', async ({postId, formData}) => {
-    console.log(formData)
     const response = await axios.patch(`http://localhost:5000/api/v1/posts/${postId}`, formData)
     return response.data
 })
 
-export const deletePost = createAsyncThunk('posts/deletePosts', async (postId) => {
-    console.log(postId)
+export const deletePost = createAsyncThunk('posts/deletePosts', async (postId, {dispatch}) => {
     const response = await axios.delete(`http://localhost:5000/api/v1/posts/${postId}`)
-    console.log(response.data)
+    dispatch(deleteReaction(postId))
     return response.data
 })
 
@@ -47,7 +44,6 @@ const postSlice = createSlice({
         })
         .addCase(fetchPosts.fulfilled, (state, action) => {
             state.status = "succeded",
-            console.log(action.payload)
             state.postsArray = action.payload
         })
         .addCase(fetchPosts.rejected, (state, action) =>{
@@ -67,5 +63,6 @@ const postSlice = createSlice({
 })
 
 export const selectAllPosts = (state) => state.posts.postsArray
+export const postListStatus = (state) => state.posts.status
 
 export default postSlice.reducer
