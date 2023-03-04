@@ -43,6 +43,7 @@ export const updateReaction = createAsyncThunk('reactions/updatePosts', async ({
     }
 })
 
+
 export const deleteReaction = createAsyncThunk('reactions/deleteReaction', async (postId) => {
     console.log("Delete Reaction", postId)
     const response = await axios.delete(`http://localhost:5000/api/v1/reactions/deleteReaction/${postId}`)
