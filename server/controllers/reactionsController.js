@@ -3,7 +3,7 @@ import Reactions from "../model/reaction.js"
 export const getAllReactions = async(req, res) => {
     try {
         const reactions = await Reactions.find({})
-        res.status(200).json({reactions : reactions})
+        res.status(200).json({reactions})
     } catch (error) {
         console.log(error)
         res.status(404).json({msg : "Something Went Wrong"})

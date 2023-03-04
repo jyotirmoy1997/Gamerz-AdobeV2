@@ -13,13 +13,13 @@ export const fetchReactions = createAsyncThunk('reactions/fetchReactions', async
     return response.data
 })
 
-export const addNewReaction = createAsyncThunk('posts/addNewReaction', async (postId) => {
+export const addNewReaction = createAsyncThunk('reactions/addNewReaction', async (postId) => {
     const response = await axios.post("http://localhost:5000/api/v1/reactions/createReactions", 
     {post : postId})
     return response.data
 })
 
-export const updateReaction = createAsyncThunk('posts/updatePosts', async ({postId, user, type}) => {
+export const updateReaction = createAsyncThunk('reactions/updatePosts', async ({postId, user, type}) => {
     if(type === "like"){
         const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateLikes", {
             post : postId,
@@ -43,7 +43,7 @@ export const updateReaction = createAsyncThunk('posts/updatePosts', async ({post
     }
 })
 
-export const deleteReaction = createAsyncThunk('posts/deleteReaction', async (postId) => {
+export const deleteReaction = createAsyncThunk('reactions/deleteReaction', async (postId) => {
     console.log("Delete Reaction", postId)
     const response = await axios.delete(`http://localhost:5000/api/v1/reactions/deleteReaction/${postId}`)
     return response.data
@@ -62,9 +62,14 @@ const reactionSlice = createSlice({
             state.status = "succeded",
             state.reactionsArray = action.payload.reactions
         })
-        .addCase(fetchReactions.rejected, (state, action) =>{
+        .addCase(fetchReactions.rejected, (state, action) => {
             state.status = 'failed'
             state.error = action.error.message
+        })
+        .addCase(updateReaction.fulfilled, (state, action) =>{
+            const {_id} = action.payload.reaction
+            const reactions = state.reactionsArray.filter(reac => reac._id !== _id)
+            state.reactionsArray = [...reactions, action.payload.reaction]
         })
         .addCase(addNewReaction.fulfilled, (state, action) => {
             console.log(action.payload.reaction)

@@ -1,13 +1,16 @@
 import { useSelector, useDispatch } from "react-redux"
-import { fetchReactions } from "../../features/reactions/reactionSlice"
+import { useEffect } from "react"
+import { fetchReactions, updateReaction, selectAllReactions } from "../../features/reactions/reactionSlice"
 import axios from "axios"
 
 const ReactionComponent = ({post, user, reactionList}) => {
-
+    const dispatch = useDispatch()
     const postReaction = reactionList.filter((reaction) => reaction.post === post)[0]
     // console.log("Post", post)
     // console.log("ReactionList", reactionList)
     // console.log("PostReaction", postReaction)
+    
+
 
     let content;
     if(!postReaction){
@@ -16,26 +19,16 @@ const ReactionComponent = ({post, user, reactionList}) => {
         )
     }
 
+    console.log("Reaction Component Rendered")
+
     const likeSubmitHandler = async () => {
-        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateLikes", {
-            post,
-            user
-        })
-        console.log(response)
+        dispatch(updateReaction({postId : post, user, type : "like"}))
     }
     const heartSubmitHandler = async () => {
-        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateHearts", {
-            post,
-            user
-        })
-        console.log(response)
+        dispatch(updateReaction({postId : post, user, type : "heart"}))
     }
     const rocketSubmitHandler = async () => {
-        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateRockets", {
-            post,
-            user
-        })
-        console.log(response)
+        dispatch(updateReaction({postId : post, user, type : "rocket"}))
     }
     return(
         <div>

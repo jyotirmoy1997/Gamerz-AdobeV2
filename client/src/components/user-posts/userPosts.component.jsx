@@ -23,7 +23,7 @@ const UserPosts = ({userId, username}) => {
     
     
 
-    // console.log(postList, reactionList)
+    
 
     // const [isDeleted, setIsDeleted] = useState(false);
       
@@ -47,7 +47,8 @@ const UserPosts = ({userId, username}) => {
         content = <h2>Loading...</h2>
     }
     else if(postStatus === "succeded" && reactionsStatus === "succeded"){
-        // console.log("Suceess")
+        console.log("Suceess")
+        console.log(postList, reactionList)
         const userPosts = postList.filter((post) => post.creator === userId) 
         content = <div className="post-wrapper">
             {

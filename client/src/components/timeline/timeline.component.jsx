@@ -30,6 +30,7 @@ const TimeLine = () => {
             username={user.name}
         />
         </div>
+    // console.log("timeline rendered")
         
     }
     return(
