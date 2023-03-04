@@ -55,8 +55,8 @@ const postSlice = createSlice({
         })
         .addCase(updatePost.fulfilled, (state, action) => {
             const {_id} = action.payload.reaction
-            const posts = state.postsArray.filter(reac => reac._id !== _id)
-            state.postsArray = [...posts, action.payload.reaction]
+            const reactions = state.reactionsArray.filter(reac => reac._id !== _id)
+            state.reactionsArray = [...reactions, action.payload.reaction]
         })
         .addCase(deletePost.fulfilled, (state, action) => {
             return

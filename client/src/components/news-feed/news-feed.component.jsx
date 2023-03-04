@@ -28,10 +28,11 @@ const NewsFeed = () => {
                             <h3>{post.title}</h3>
                             <h4>{post.creator}</h4>
                             <h5>{post.message}</h5>
-                            {/* <ReactionComponent 
+                            <ReactionComponent 
                                 post={post._id}
                                 user={user.userId}
-                            /> */}
+                                reactionList={reactionList}
+                            />
                         </div>
                     )
                 })
