@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { selectUser, userStatus } from "../../features/user/userSlice"
 import { logOutUser } from "../../features/user/userSlice"
 import { useNavigate } from "react-router-dom"
+import { removePosts } from "../../features/posts/postSlice"
+import { removeReactions } from "../../features/reactions/reactionSlice"
 
 const Navigation = () => {
     const userLogStatus = useSelector(userStatus)
@@ -17,6 +19,8 @@ const Navigation = () => {
 
     const logOutHandler = () => {
         dispatch(logOutUser())
+        dispatch(removePosts())
+        dispatch(removeReactions())
         navigate('/')
     }
     

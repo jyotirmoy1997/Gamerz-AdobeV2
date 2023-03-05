@@ -37,7 +37,12 @@ export const deletePost = createAsyncThunk('posts/deletePosts', async (postId, {
 const postSlice = createSlice({
     name : "Posts",
     initialState,
-    reducers : {},
+    reducers : {
+        removePosts : (state, action) => {
+            state.status = 'idle'
+            state.postsArray = []
+        }
+    },
     extraReducers : (builder) => {
         builder.addCase(fetchPosts.pending, (state, action) => {
             state.status = 'loading'
@@ -64,6 +69,8 @@ const postSlice = createSlice({
     }
 })
 
+
+export const {removePosts} = postSlice.actions
 export const selectAllPosts = (state) => state.posts.postsArray
 export const postListStatus = (state) => state.posts.status
 

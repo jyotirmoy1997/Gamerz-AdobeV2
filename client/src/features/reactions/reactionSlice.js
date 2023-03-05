@@ -54,7 +54,12 @@ export const deleteReaction = createAsyncThunk('reactions/deleteReaction', async
 const reactionSlice = createSlice({
     name : "Reactions",
     initialState,
-    reducers : {},
+    reducers : {
+        removeReactions : (state, action) => {
+            state.reactionsArray = []
+            state.status = 'idle'
+        }
+    },
     extraReducers : (builder) => {
         builder.addCase(fetchReactions.pending, (state, action) => {
             state.status = 'loading'
@@ -82,6 +87,7 @@ const reactionSlice = createSlice({
     }
 })
 
+export const {removeReactions} = reactionSlice.actions
 export const selectAllReactions = (state) => state.reactions.reactionsArray
 export const reactionListStatus = (state) => state.reactions.status
 
