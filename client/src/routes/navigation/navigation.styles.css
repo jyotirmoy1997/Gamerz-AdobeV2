@@ -14,6 +14,16 @@
     font-size: 20px;
 }
 
+.navigation-links-active{
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+    text-decoration: none;
+    font-size: 20px;
+    width: 20%;
+}
+
 .navigation-links a{
     text-decoration: none;
     color: black;

@@ -9,10 +9,14 @@ const initialState = {
 }
 
 export const signInUser = createAsyncThunk('users/signInUser', async(formData) => {
-    const response = await axios.post('http://localhost:5000/api/v1/auth/sign-in', 
-            {...formData}, 
-            { withCredentials: true })
-    return response.data
+    try{
+        const response = await axios.post('http://localhost:5000/api/v1/auth/sign-in', 
+        {...formData}, { withCredentials: true })
+        return response.data
+    }
+    catch(error){
+        return error.response
+    }
 })
 
 export const logOutUser = createAsyncThunk('users/logOutUser', async() => {
@@ -26,15 +30,20 @@ const userSlice = createSlice({
     initialState,
     reducers : {},
     extraReducers : (builder) => {
-        builder.addCase(signInUser.pending, (state, action) => {
-            state.status = "pending"
-        })
-        .addCase(signInUser.fulfilled, (state, action) => {
-            state.user = action.payload.user
-            state.status = "loggedIn"
+        builder.addCase(signInUser.fulfilled, (state, action) => {
+            if(action.payload.status === 404){
+                state.user = {}
+                state.error = action.payload.data.msg
+                state.status = "loggedOut"
+            }
+            else{
+
+                state.user = action.payload.user
+                state.status = "loggedIn"
+                state.error = null;
+            }
         })
         .addCase(signInUser.rejected, (state, action) => {
-            state.user = action.payload
             state.error = action.error.message
         })
         .addCase(logOutUser.fulfilled, (state, action) => {
@@ -47,5 +56,6 @@ const userSlice = createSlice({
 
 export const selectUser = (state) => state.users.user
 export const userStatus = (state) => state.users.status
+export const userError = (state) => state.users.error
 
 export default userSlice.reducer

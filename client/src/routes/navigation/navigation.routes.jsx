@@ -1,10 +1,10 @@
 import { Link, Outlet } from "react-router-dom"
-import { Fragment } from "react"
+import { Fragment, useEffect, useState } from "react"
 import logo from "../../assets/LOGO.png"
 import Button from "../../components/button/button.component"
 import "./navigation.styles.css"
 import { useSelector, useDispatch } from "react-redux"
-import { selectUser, userStatus } from "../../features/user/userSlice"
+import { userStatus } from "../../features/user/userSlice"
 import { logOutUser } from "../../features/user/userSlice"
 import { useNavigate } from "react-router-dom"
 import { removePosts } from "../../features/posts/postSlice"
@@ -33,15 +33,18 @@ const Navigation = () => {
     return(
         <Fragment>
             <div className="navigation-wrapper">
-                <Link>
+                <Link to="/">
                     <img src={logo} alt="" height={95} width={250} />
                 </Link>
-                <div className="navigation-links">
-                    <Link to="/">Home</Link>
+                <div className="navigation-links" >
                     {
-                        userAvailable ? userInfo : <Link to="/log-in">
-                            <Button content={"Log-In"} />
-                        </Link>
+                        userAvailable ? userInfo :
+                        <Fragment >
+                            <Link to="/">Home</Link>
+                            <Link to="/log-in">
+                                <Button content={"Log-In"} />
+                            </Link>
+                        </Fragment>
                     }
                     
                 </div>

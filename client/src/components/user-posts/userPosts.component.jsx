@@ -47,8 +47,6 @@ const UserPosts = ({userId, username}) => {
         content = <h2>Loading...</h2>
     }
     else if(postStatus === "succeded" && reactionsStatus === "succeded"){
-        console.log("Suceess")
-        console.log(postList, reactionList)
         const userPosts = postList.filter((post) => post.creator === userId) 
         content = <div className="post-wrapper">
             {
@@ -58,6 +56,7 @@ const UserPosts = ({userId, username}) => {
                             <h3>{post.title}</h3>
                             <h4>{username}</h4>
                             <h5>{post.message}</h5>
+                            <img src={post.image} alt="" srcSet="" height={200} width={300} />
                             <ReactionComponent 
                             post={post._id} 
                             user={post.creator}

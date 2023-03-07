@@ -6,7 +6,8 @@ import { fetchPosts} from "../../features/posts/postSlice"
 import { selectAllPosts, postListStatus } from "../../features/posts/postSlice"
 import { useEffect, useState } from "react"
 import { fetchReactions, selectAllReactions, reactionListStatus } from "../../features/reactions/reactionSlice"
-
+import { Oval } from  'react-loader-spinner'
+import "./timeline.styles.css"
 
 
 const TimeLine = () => {
@@ -18,7 +19,19 @@ const TimeLine = () => {
 
     if(userLogStatus === "pending" ){
         // console.log("Fetching Details")
-        content = <h2>Loading...</h2>
+        content = <Oval
+        height={80}
+        width={80}
+        color="#4fa94d"
+        wrapperStyle={{}}
+        wrapperClass=""
+        visible={true}
+        ariaLabel='oval-loading'
+        secondaryColor="#4fa94d"
+        strokeWidth={2}
+        strokeWidthSecondary={2}
+      
+      />
     }
     else if(userLogStatus === "loggedIn"){
         // console.log("Fetch Done")
@@ -32,10 +45,10 @@ const TimeLine = () => {
         </div>
     // console.log("timeline rendered")
         
-    }
+   }
     return(
         <div>
-            <h1>TimeLine</h1>
+            {/* <h1>TimeLine</h1> */}
             {content}
         </div>
     )

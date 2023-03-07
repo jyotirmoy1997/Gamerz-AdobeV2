@@ -7,19 +7,23 @@ export const signIn = async (req, res) => {
     const { email, password } = req.body
     console.log(email, password)
     const user = await UserModel.findOne({email})
+    console.log(user)
     if(!user){
-        return res.status(404).json({msg : "User doesn't exist", status : StatusCodes.NOT_FOUND})
+        return res.status(404).json({msg : "User doesn't exist"})
     }
     const isPasswordCorrect = await user.comparePassword(password)
     if(!isPasswordCorrect){
-        return res.status(404).json({msg : "Wrong Password", status : StatusCodes.NOT_FOUND})
+        res.status(404).json({msg : "Wrong Password"})
     }
-    console.log(user)
-    // res.status(200).json(user)
-    const tokenUser = createTokenUser(user)
-    // const token = createJWT({payload : tokenUser})
-    attachCookiesToResponse(res, tokenUser)
-    res.status(200).json({user : tokenUser})
+    else{
+
+        console.log(user)
+        // res.status(200).json(user)
+        const tokenUser = createTokenUser(user)
+        // const token = createJWT({payload : tokenUser})
+        attachCookiesToResponse(res, tokenUser)
+        res.status(200).json({user : tokenUser})
+    }
 }
 
 export const signUp = async (req, res) => {

@@ -5,12 +5,28 @@ import { fetchReactions } from "../../features/reactions/reactionSlice"
 import axios from "axios"
 import "./post.styles.css"
 
+function convertToBase64(file){
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader()
+        fileReader.readAsDataURL(file)
+        fileReader.onload = () => {
+            resolve(fileReader.result)
+        }
+        fileReader.onerror = (error) => {
+            reject(error)
+        }
+    })
+}
+
 const Post = ({creator}) => {
+    const [imageFile, setImageFile] = useState('')
     const [formData, setFormData] = useState({
         creator : creator,
         title : "",
-        message : ""
+        message : "",
+        image : ""
     })
+    
     const dispatch = useDispatch()
 
     const onSubmitHandler = async (event) => {
@@ -19,6 +35,13 @@ const Post = ({creator}) => {
         dispatch(addNewPost({...formData},{dispatch}))
         dispatch(fetchReactions())
 
+    }
+
+    const handleFileSubmit = async (event) => {
+        const file = event.target.files[0]
+        const base64File = await convertToBase64(file)
+        setImageFile(base64File)
+        setFormData({...formData, image: base64File})
     }
     return(
         <div className="form-wrapper">
@@ -41,6 +64,13 @@ const Post = ({creator}) => {
                     type="text" 
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message : e.target.value})} />
+
+                <input 
+                    type="file" 
+                    name="" id="file" 
+                    accept=".jpg, .png, .jpeg"
+                    onChange={(e) => handleFileSubmit(e)} />
+
                 <button onClick={onSubmitHandler}>Post</button>
             </form>
         </div>
