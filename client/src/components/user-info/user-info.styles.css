@@ -1,0 +1,22 @@
+.user-info-wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-info-avatar{
+    padding: 2em;
+    width: 70%;
+    background-image: url("../../../assets/cover.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+
+}
+
+.user-details{
+    color: white;
+    padding: 1.5em;
+}

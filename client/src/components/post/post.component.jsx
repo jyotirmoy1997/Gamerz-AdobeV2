@@ -44,9 +44,9 @@ const Post = ({creator}) => {
         setFormData({...formData, image: base64File})
     }
     return(
-        <div className="form-wrapper">
+        <div className="post-wrapper" >
             <h2>Share your Thoughts !</h2>
-            <form>
+            <form className="post-form">
                 {/* <label htmlFor="" >Creator</label>
                 <input 
                     type="text" 

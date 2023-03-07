@@ -21,7 +21,9 @@ const Navigation = () => {
         dispatch(logOutUser())
         dispatch(removePosts())
         dispatch(removeReactions())
-        navigate('/')
+        setTimeout(() => {
+            navigate('/')
+        }, 1000)
     }
     
     const userInfo = <Fragment>

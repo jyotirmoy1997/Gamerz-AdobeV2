@@ -1,0 +1,16 @@
+.post-wrapper{
+    padding: 2em;
+    width: 40%;
+    max-width: 400px;
+    /* margin: 0 auto; */
+}
+
+.post-wrapper h2{
+    text-align: center;
+}
+
+.post-form{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}

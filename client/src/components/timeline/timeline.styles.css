@@ -3,3 +3,9 @@
     height: 200px;
     margin: 0 auto;
 }
+
+.timeline{
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+}

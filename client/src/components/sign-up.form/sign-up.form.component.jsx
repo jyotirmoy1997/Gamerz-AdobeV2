@@ -2,6 +2,7 @@ import { useState } from "react"
 import Button from "../button/button.component"
 import axios from "axios"
 import "./sign-up.form.styles.css"
+import toast, { Toaster } from 'react-hot-toast';
 
 const initialState = {
     name : '',
@@ -9,9 +10,12 @@ const initialState = {
     password : '',
     confirmPassword : ''
 }
+const notify = () => toast.success('Signed-Up Successfull, Please Log-in to Continue');
 
 const SignUpForm = () => {
     const [formData, setFormData] = useState(initialState)
+    const [emailError, setEmailError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
     const [errorMessage, setErrorMessage] = useState(null)
 
     const onChangeHandler = (event) => {
@@ -20,16 +24,20 @@ const SignUpForm = () => {
 
     const onSubmitHandler = async (event) => {
         event.preventDefault()
+        if(formData.password !== formData.confirmPassword){
+            setPasswordError('*Passwords do not match')
+            return
+        }
         try {
             const response = await axios.post('http://localhost:5000/api/v1/auth/sign-up', {...formData})
-            console.log(response)
+            notify()
             
         } catch (error) {
             console.log(error.response)
             setErrorMessage(error.response.data.msg)
+            setEmailError('*User already exists')
         }
     }
-    
 
     return(
         <div>
@@ -44,19 +52,25 @@ const SignUpForm = () => {
                  required 
                 />
 
-                <label className="it5" htmlFor="">Email</label>
+                <label id="sign-up-email"
+                    data = {emailError} className="it5" htmlFor="">Email</label>
                 <input className="it6" type="email" name="email" id="email" value={formData.email}
                 
                 onChange={onChangeHandler}
                 required />
 
-                <label className="it7" htmlFor="">Password</label>
+                <label
+                id="sign-up-password"
+                data = {passwordError}
+                 className="it7" htmlFor="">Password</label>
                 <input className="it8" type="password" name="password" id="password" 
                 value={formData.password}
                 onChange={onChangeHandler}
                 required />
 
-                <label className="it9" htmlFor="">Confirm Password</label>
+                <label
+                id="sign-up-confirm-password"
+                data = {passwordError} className="it9" htmlFor="">Confirm Password</label>
                 <input className="it10" type="password" name="confirmPassword" 
                 id="confirm-password" value={formData.confirmPassword}
                 onChange={onChangeHandler}
@@ -64,6 +78,7 @@ const SignUpForm = () => {
                 required />
 
                 <Button onclick={onSubmitHandler} className="it11" content="Sign-Up" />
+                <Toaster />
             </form>
         </div>
     )

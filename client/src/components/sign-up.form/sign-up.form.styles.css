@@ -8,6 +8,7 @@
     grid-template-rows: repeat(12, 1fr);
     grid-gap: 10px;
     height: 500px;
+    padding: 4em;
 }
 
 .it1, .it2, .it3, .it4, .it5, .it6, .it7, .it8, .it9, .it10, .it11{
@@ -62,4 +63,12 @@
 .it11:hover{
     background-color: #303f9f;
     cursor: pointer;
+}
+
+
+#sign-up-email::after, #sign-up-password::after, #sign-up-confirm-password::after{
+    content: attr(data);
+    color: red;
+    margin-left: 20px;
+    font-size: 14px;
 }
