@@ -19,7 +19,7 @@ const SignInForm = () => {
     const [emailError, setEmailError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const [formData, setFormData] = useState(initialState)
-    const userLogStatus = useSelector(userStatus)
+    const userLogStatus = useSelector(userStatus) === 'loggedIn'
     const userErr = useSelector(userError)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -27,7 +27,7 @@ const SignInForm = () => {
     
 
     useEffect(() => {
-        if(userLogStatus === 'loggedIn'){
+        if(userLogStatus){
             navigate('/user/timeline')
         }
     }, [userLogStatus, navigate])
@@ -55,6 +55,12 @@ const SignInForm = () => {
     // console.log(formData)
     const onSubmitHandler = async (event) => {
         event.preventDefault()
+        if(formData.email === ''){
+            setEmailError('Email Cannot be Empty')
+        }
+        if(formData.password === ''){
+            setPasswordError('Password cannot be Empty')
+        }
         // if(validateEmail(formData.email) && validatePassword(formData.password)){
 
             dispatch(signInUser(formData))
@@ -84,9 +90,10 @@ const SignInForm = () => {
         // }
         
     }
+
     return(
         <div >
-            <form className="wrapper-sign-in" action="">
+            <form className="wrapper-sign-in" action="" onSubmit={onSubmitHandler}>
 
                 <div className="el1">I already have an account</div>
 
