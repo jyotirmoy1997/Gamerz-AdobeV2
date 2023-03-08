@@ -1,16 +1,17 @@
 .user-info-wrapper{
     width: 100%;
+    padding: 2em 0;
     display: flex;
-    justify-content: space-between;
-}
-
-.user-info-avatar{
-    padding: 2em;
-    width: 70%;
+    justify-content: space-evenly;
     background-image: url("../../../assets/cover.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.user-info-avatar{
+    padding: 2em;
+    width: 50%;
     display: flex;
     align-items: center;
 

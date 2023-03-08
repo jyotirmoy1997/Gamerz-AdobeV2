@@ -47,20 +47,14 @@ const Post = ({creator}) => {
         <div className="post-wrapper" >
             <h2>Share your Thoughts !</h2>
             <form className="post-form">
-                {/* <label htmlFor="" >Creator</label>
-                <input 
-                    type="text" 
-                    value={formData.creator} 
-                    onChange={(e) => setFormData({...formData, creator : e.target.value})} 
-                /> */}
                 <label htmlFor="">Title</label>
-                <input 
+                <input className="el4"
                     type="text" 
                     value={formData.title}
                     onChange={(e) => setFormData({...formData, title : e.target.value})} />
                 <label htmlFor="">Message</label>
 
-                <input 
+                <input className="el4"
                     type="text" 
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message : e.target.value})} />

@@ -1,0 +1,43 @@
+.single-post{
+    padding: 1em;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    /* padding: 3em; */
+    background-color: #F5F5F5;
+
+    
+}
+
+.single-post img {
+    width: 100%;
+    height: auto;
+}
+
+.date-show{
+    font-size: 12px;
+}
+
+.single-post p{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-post{
+    position: relative;
+}
+
+
+.edit-post::after{
+    content: "Edit Post";
+    position: absolute;
+}
+
+
+.edit-post:hover{
+    cursor: pointer;
+}
