@@ -19,21 +19,6 @@ const UserPosts = ({userId, username}) => {
         dispatch(fetchReactions())
     }, [])
     
-    const navigate = useNavigate()
-
-    // const updatePostHandler = (postId) => {
-    //     console.log(postId)
-    //     navigate(`/posts/${postId}`)
-    // }
-
-    
-    // const deletePostHandler = (postId) => {
-    //     const res = confirm("Do you sure want to delete this post ?")
-    //     if(res){
-    //         dispatch(deletePost(postId, {dispatch}))
-    //         // setIsDeleted(true);
-    //     }
-    // }
 
     let content;
     if(postStatus === "pending" && reactionsStatus === "pending"){

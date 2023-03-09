@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux"
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router"
 import ReactionComponent from "../reactions/reaction.component"
 import { dateConverter } from "../../utils/dateConverter";
@@ -10,6 +11,21 @@ import "./post-card.styles.css"
 
 
 const PostCard = ({post, reactionList, username}) => {
+    const [shouldNavigate, setShouldNavigate] = useState(false);
+    const navigate = useNavigate()
+    const editPostHandler = () => {
+        setShouldNavigate(true);
+    }
+
+    useEffect(() => {
+        if (shouldNavigate) {
+            setShouldNavigate(false);
+            navigate(`/posts/${post._id}`);
+        }
+      }, [shouldNavigate, navigate, post._id]);
+
+
+    
     return(
         <div className="single-post">
             <h2>{post.title} </h2>
@@ -23,9 +39,9 @@ const PostCard = ({post, reactionList, username}) => {
             />
             <p> 
                 <span className="date-show">{dateConverter(post.createdAt)}</span> 
-                <div className="edit-post">
+                <span className="edit-post" onClick={() => editPostHandler()}>
                     <FiEdit  size={30}/>  
-                </div>
+                </span>
                 
             </p>
         </div>

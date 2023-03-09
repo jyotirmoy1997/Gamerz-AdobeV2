@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux"
 import { AiFillLike, AiFillHeart } from 'react-icons/ai';
 import { BsRocketTakeoffFill } from 'react-icons/bs';
+import { updateReaction } from "../../features/reactions/reactionSlice"
 
 import "./reaction.styles.css"
 

@@ -34,10 +34,21 @@
 
 .edit-post::after{
     content: "Edit Post";
+    visibility: hidden;
     position: absolute;
+    color: white;
+    width:max-content;
+    font-size: 13px;
+    padding: 0.5em;
+    border-radius: 8px;
+    background-color: #263238;
 }
 
 
-.edit-post:hover{
+.edit-post:hover {
     cursor: pointer;
+}
+
+.edit-post:hover::after{
+    visibility: visible;
 }
