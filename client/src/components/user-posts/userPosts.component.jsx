@@ -19,14 +19,17 @@ const UserPosts = ({userId, username}) => {
         dispatch(fetchReactions())
     }, [])
     
+    // console.log(userId)
+    // console.log(postList)
 
     let content;
     if(postStatus === "pending" && reactionsStatus === "pending"){
-        console.log("Pending")
+        // console.log("Pending")
         content = <h2>Loading...</h2>
     }
     else if(postStatus === "succeded" && reactionsStatus === "succeded"){
-        const userPosts = postList.filter((post) => post.creator === userId) 
+        const userPosts = postList.filter((post) => post.creatorId === userId)
+        // console.log("User Posts", userPosts)
         content = <div className="user-post-wrapper">
             {
                 userPosts.map((post) => {

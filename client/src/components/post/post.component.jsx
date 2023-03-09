@@ -18,10 +18,11 @@ function convertToBase64(file){
     })
 }
 
-const Post = ({creator}) => {
+const Post = ({creator, username}) => {
     const [imageFile, setImageFile] = useState('')
     const [formData, setFormData] = useState({
-        creator : creator,
+        creatorName : username,
+        creatorId : creator,
         title : "",
         message : "",
         image : ""
@@ -63,6 +64,7 @@ const Post = ({creator}) => {
                     type="file" 
                     name="" id="file" 
                     accept=".jpg, .png, .jpeg"
+                    maxLength={200000}
                     onChange={(e) => handleFileSubmit(e)} />
 
                 <button onClick={onSubmitHandler}>Post</button>

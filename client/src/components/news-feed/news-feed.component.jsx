@@ -1,14 +1,9 @@
-import { useSelector, useDispatch } from "react-redux"
-import { fetchPosts, deletePost} from "../../features/posts/postSlice"
+import { useSelector } from "react-redux"
 import { selectAllPosts } from "../../features/posts/postSlice"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
 import { selectUser } from "../../features/user/userSlice"
-import { fetchReactions } from "../../features/reactions/reactionSlice"
 import { selectAllReactions } from "../../features/reactions/reactionSlice"
-import ReactionComponent from "../reactions/reaction.component"
-
-import axios from "axios"
+import NFPostCard from "../news-feed-post-card/news-feed-post-card.component"
+import "./news-feed.styles.css"
 
 
 const NewsFeed = () => {
@@ -16,24 +11,15 @@ const NewsFeed = () => {
     const postList = useSelector(selectAllPosts)
     const reactionList = useSelector(selectAllReactions)
 
-    const userNewsFeedPosts = postList.filter((post) => post.creator !== user.userId)
+    const userNewsFeedPosts = postList.filter((post) => post.creatorId !== user.userId)
     
     console.log("Newd Feed", userNewsFeedPosts)
     return(
-        <div>
+        <div className="news-feed-wrapper">
             {
                 userNewsFeedPosts.map((post) => {
                     return(
-                        <div key={post._id}>
-                            <h3>{post.title}</h3>
-                            <h4>{post.creator}</h4>
-                            <h5>{post.message}</h5>
-                            <ReactionComponent 
-                                post={post._id}
-                                user={user.userId}
-                                reactionList={reactionList}
-                            />
-                        </div>
+                        < NFPostCard key={post._id} post={post} reactionList={reactionList} />
                     )
                 })
             }

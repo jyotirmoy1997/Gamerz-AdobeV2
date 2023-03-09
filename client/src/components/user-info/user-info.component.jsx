@@ -13,7 +13,7 @@ const UserInfo = ({user}) => {
                 <p>Interests : {user.interests.length === 0 ?  "Add Interests" : user.interests}</p>
             </div>
         </div>
-        <Post creator={user.userId} />
+        <Post creator={user.userId} username={user.name} />
     </div>
     )
 }

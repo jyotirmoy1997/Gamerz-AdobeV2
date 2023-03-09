@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux"
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router"
 import ReactionComponent from "../reactions/reaction.component"
@@ -11,6 +10,7 @@ import "./post-card.styles.css"
 
 
 const PostCard = ({post, reactionList, username}) => {
+    console.log(post)
     const [shouldNavigate, setShouldNavigate] = useState(false);
     const navigate = useNavigate()
     const editPostHandler = () => {
@@ -24,7 +24,7 @@ const PostCard = ({post, reactionList, username}) => {
         }
       }, [shouldNavigate, navigate, post._id]);
 
-
+    console.log("Rendered")
     
     return(
         <div className="single-post">
@@ -34,7 +34,7 @@ const PostCard = ({post, reactionList, username}) => {
             <h5>{post.message}</h5>
             <ReactionComponent 
                 post={post._id} 
-                user={post.creator}
+                user={post.creatorId}
                 reactionList={reactionList}
             />
             <p> 

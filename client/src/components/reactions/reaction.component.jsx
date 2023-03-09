@@ -17,7 +17,7 @@ const ReactionComponent = ({post, user, reactionList}) => {
         )
     }
 
-    console.log("Reaction Component Rendered")
+    // console.log("Reaction Component Rendered")
 
     const likeSubmitHandler = async () => {
         dispatch(updateReaction({postId : post, user, type : "like"}))
