@@ -19,6 +19,17 @@ export const signInUser = createAsyncThunk('users/signInUser', async(formData) =
     }
 })
 
+export const updateUser = createAsyncThunk('users/updateUser', async(formData) => {
+    try{
+        const response = await axios.patch('http://localhost:5000/api/v1/users/updateUser', 
+        {...formData}, { withCredentials: true })
+        return response.data
+    }
+    catch(error){
+        return error.response
+    }
+})
+
 export const logOutUser = createAsyncThunk('users/logOutUser', async() => {
     const response = await axios.post('http://localhost:5000/api/v1/auth/logout', { withCredentials: true })
     console.log("logout", response)
@@ -42,6 +53,12 @@ const userSlice = createSlice({
                 state.status = "loggedIn"
                 state.error = null;
             }
+        })
+        .addCase(updateUser.fulfilled, (state, action) => {
+            state.user = action.payload
+        })
+        .addCase(updateUser.rejected, (state, action) => {
+            state.error = action.error.message
         })
         .addCase(signInUser.rejected, (state, action) => {
             state.error = action.error.message

@@ -1,10 +1,9 @@
-import { deletePost} from "../../features/posts/postSlice"
-import { useNavigate } from "react-router"
+import { useEffect} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { selectAllPosts, postListStatus, fetchPosts } from "../../features/posts/postSlice"
 import { selectAllReactions, reactionListStatus, fetchReactions } from "../../features/reactions/reactionSlice"
 import "./userPosts.styles.css"
-import { useEffect} from "react"
+
 import PostCard from "../post-card/post-card.component"
 
 const UserPosts = ({userId, username}) => {
@@ -19,8 +18,6 @@ const UserPosts = ({userId, username}) => {
         dispatch(fetchReactions())
     }, [])
     
-    // console.log(userId)
-    // console.log(postList)
 
     let content;
     if(postStatus === "pending" && reactionsStatus === "pending"){

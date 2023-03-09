@@ -11,6 +11,7 @@ import { userStatus } from './features/user/userSlice'
 import NotFoundRoute from './routes/not-found/not-found.routes'
 import { Fragment } from 'react'
 import ExistingLogin from './routes/existing-login/existing-login.component'
+import UpdateUser from './components/update-user/update-user.component'
 
 const App = () => {
   const userAvailable = useSelector(userStatus) === "loggedIn"
@@ -23,6 +24,7 @@ const App = () => {
          <Route index={true} element={<ExistingLogin />} />
           <Route path="/log-in" element={<ExistingLogin />} />
           <Route path="/user/timeline" element={<TimeLine />} />
+          <Route path="/user/update-user" element={<UpdateUser />} />
           <Route path="/user/newsfeed" element={<NewsFeed />} />
           <Route path="/posts">
             <Route path=":postId" element={<UpdatePost />} />

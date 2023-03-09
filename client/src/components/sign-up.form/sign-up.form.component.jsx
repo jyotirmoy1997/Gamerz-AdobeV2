@@ -2,7 +2,9 @@ import { useState } from "react"
 import Button from "../button/button.component"
 import axios from "axios"
 import "./sign-up.form.styles.css"
+import defaultDp from "../../../assets/dp.jpg"
 import toast, { Toaster } from 'react-hot-toast';
+import { convertToBase64 } from "../../utils/base64Converter";
 
 const initialState = {
     name : '',
@@ -23,6 +25,7 @@ const SignUpForm = () => {
     }
 
     const onSubmitHandler = async (event) => {
+        
         event.preventDefault()
         if(formData.password !== formData.confirmPassword){
             setPasswordError('*Passwords do not match')
@@ -30,11 +33,12 @@ const SignUpForm = () => {
         }
         try {
             const response = await axios.post('http://localhost:5000/api/v1/auth/sign-up', {...formData})
+            setFormData(initialState)
             notify()
             
         } catch (error) {
-            console.log(error.response)
-            setErrorMessage(error.response.data.msg)
+            console.log(error)
+            // setErrorMessage(error.response.data.msg)
             setEmailError('*User already exists')
         }
     }

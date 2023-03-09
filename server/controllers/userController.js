@@ -1,5 +1,6 @@
 import mongoose from "mongoose"
 import UserModel from "../model/user.js"
+import { createTokenUser } from "../utils/createTokenUser.js"
 
 export const getSingleUser = async (req, res) => {
     const { id : _id } = req.params
@@ -18,4 +19,19 @@ export const getSingleUser = async (req, res) => {
         res.send("Something Went wrong")
     }
     
+}
+
+export const updateUser = async (req, res) => {
+    const {userId} = req.body
+    try {
+        // console.log(re)
+        const updatedUser = await UserModel.findOneAndUpdate({_id : userId}, req.body, {new : true})
+        // console.log(updatedUser)
+        const user = createTokenUser(updatedUser)
+        console.log(user)
+        res.status(200).json(user)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ msg : "Something Went wrong"})
+    }
 }

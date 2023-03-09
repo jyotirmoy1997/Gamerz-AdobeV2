@@ -12,9 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {/* <ChakraProvider> */}
         <App />
-        {/* </ChakraProvider> */}
       </PersistGate>
     </Provider>
   </BrowserRouter>,

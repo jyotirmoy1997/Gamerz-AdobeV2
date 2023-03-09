@@ -13,8 +13,8 @@ const UserSchema = new mongoose.Schema({
         default : ''
     },
     interests : {
-        type : [String],
-        default : []
+        type : String,
+        default : ''
     },
     email : {
         type : String,
@@ -25,6 +25,10 @@ const UserSchema = new mongoose.Schema({
         required : true,
         minlength : 8,
         maxlength : 32
+    },
+    profilePicture : {
+        type : String,
+        default : ''
     }
 })
 

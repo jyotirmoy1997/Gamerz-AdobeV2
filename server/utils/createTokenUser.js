@@ -3,4 +3,5 @@ export const createTokenUser = (user) => ({
     name : user.name, 
     about : user.about,
     interests : user.interests,
+    profilePicture : user.profilePicture
 })

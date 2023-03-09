@@ -20,6 +20,7 @@ export const signIn = async (req, res) => {
         console.log(user)
         // res.status(200).json(user)
         const tokenUser = createTokenUser(user)
+        console.log(tokenUser)
         // const token = createJWT({payload : tokenUser})
         attachCookiesToResponse(res, tokenUser)
         res.status(200).json({user : tokenUser})
