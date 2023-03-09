@@ -64,9 +64,9 @@ const SignInForm = () => {
         // if(validateEmail(formData.email) && validatePassword(formData.password)){
 
             dispatch(signInUser(formData))
-            setTimeout(() => {
-                navigate('/user/timeline')
-            }, 2000)
+            // setTimeout(() => {
+            //     navigate('/user/timeline')
+            // }, 2000)
             // if(userLogStatus === 'loggedOut'){
             //     console.log("Hit")
             //     console.log(userErr)

@@ -7,11 +7,11 @@ const NFPostCard = ({post, reactionList}) => {
         <div className="single-post">
             <h2>{post.title} </h2>
             <img src={post.image} alt="" srcSet="" height={200} width={300} />
-            {/* <h4>{username}</h4> */}
+            <h4>{post.creatorName}</h4>
             <h5>{post.message}</h5>
             <ReactionComponent 
                 post={post._id} 
-                user={post.creator}
+                user={post.creatorId}
                 reactionList={reactionList}
             />
             <p className="date-show"> {dateConverter(post.createdAt)}</p>

@@ -2,6 +2,7 @@
     padding: 2em;
     width: 40%;
     max-width: 300px;
+    border-radius: 8px;
     background-color: white;
     /* margin: 0 auto; */
 }
@@ -14,4 +15,42 @@
     display: flex;
     width: 100%;
     flex-direction: column;
+    gap: 0.75em;
+}
+
+.post-form label{
+    font-weight: 400;
+}
+
+.post-form button{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#file-upload{
+        /* background-color: blue; */
+    border: 0.25px solid black;
+    border-radius: 8px;
+    height: 85px;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#file-upload:hover{
+    cursor: pointer;
+}
+
+#file{
+    display: none;
+}
+
+#post-title::after, #post-message::after{
+    content: attr(data);
+    color: red;
+    margin-left: 20px;
+    font-size: 14px;
 }

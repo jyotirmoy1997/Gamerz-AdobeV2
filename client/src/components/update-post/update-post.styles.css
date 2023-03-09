@@ -1,0 +1,114 @@
+.up-outer{
+    padding: 2em 0;
+    
+}
+
+.update-post-wrapper{
+    padding: 2em;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
+    border-radius: 8px;
+    background-color: white;
+    /* margin: 0 auto; */
+}
+
+.update-post-wrapper h2{
+    text-align: center;
+}
+
+.update-post-form{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.update-post-form label{
+    font-weight: 400;
+}
+
+.update-post-form button{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#update-file-upload{
+        /* background-color: blue; */
+    border: 0.25px solid black;
+    border-radius: 8px;
+    height: 85px;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#update-file-upload:hover{
+    cursor: pointer;
+}
+
+#update-file{
+    display: none;
+}
+
+#update-post-title::after, #update-post-message::after{
+    content: attr(data);
+    color: red;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+#up-btn-container{
+    display: flex;
+}
+
+#up-btn-container button{
+    position: relative;
+    border: 0.1px solid black;
+    border-radius: 3px;
+    background-color: #f0f0f0;
+    height: 40px;
+    width: 20%
+}
+
+#up-btn-container button:hover{
+    cursor: pointer;
+}
+#dlt-btn:hover::before{
+    visibility: visible;
+}
+
+
+#dlt-btn::before{
+    content: "Delete Post";
+    visibility: hidden;
+    position: absolute;
+    color: white;
+    width:max-content;
+    font-size: 13px;
+    padding: 0.5em;
+    border-radius: 8px;
+    background-color: #263238;
+    transform: translateX(-140%);
+}
+
+#up-btn:hover::before{
+    visibility: visible;
+}
+
+
+#up-btn::before{
+    content: "Update Post";
+    visibility: hidden;
+    position: absolute;
+    color: white;
+    width:max-content;
+    font-size: 13px;
+    padding: 0.5em;
+    border-radius: 8px;
+    background-color: #263238;
+    transform: translateX(70%);
+}
