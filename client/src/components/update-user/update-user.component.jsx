@@ -4,7 +4,11 @@ import { updateUser, selectUser } from "../../features/user/userSlice"
 import { convertToBase64 } from "../../utils/base64Converter"
 import Button from "../button/button.component"
 import defaultDp from "../../../assets/dp.jpg"
+import toast, { Toaster } from 'react-hot-toast';
 import "./update-user.styles.css"
+import { useNavigate } from "react-router"
+
+const notify = () => toast.success('User-info Updated Successfully, Redirecting to Timeline...');
 
 const UpdateUser = () => {
     const [imageFile, setImageFile] = useState('')
@@ -15,6 +19,7 @@ const UpdateUser = () => {
 
     })
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const user = useSelector(selectUser)
     console.log(user)
 
@@ -51,48 +56,56 @@ const UpdateUser = () => {
             interests : formData.interests,
             profilePicture : formData.profilePicture
         }))
+        notify()
+        setTimeout(() => {
+            navigate('/user/timeline')
+        }, 2000)
     }
     return(
-        <div className="post-wrapper" >
-            <h2>Update Info</h2>
-            <form className="post-form" onSubmit={onSubmitHandler}>
-                <img 
-                    src={ formData.profilePicture.length > 1 ? formData.profilePicture : defaultDp} 
-                    alt=""
-                    height={150}
-                    width={150}
-                     />
+        <div className="user-update-container">
+            <div className="user-update-wrapper" >
+                <h2>Update Info</h2>
+                <form className="post-form" onSubmit={onSubmitHandler}>
+                    <img 
+                        src={ formData.profilePicture.length > 1 ? formData.profilePicture : defaultDp} 
+                        alt=""
+                        height={150}
+                        width={150}
+                        />
 
-                <input 
-                    type="file" 
-                    name="" id="update-file" 
-                    accept=".jpg, .png, .jpeg"
-                    maxLength={200000}
-                    onChange={(e) => handleFileSubmit(e)} required />
-                
-                <label htmlFor="update-file" id="update-file-upload">
-                    Update Profile Picture
-                </label>
+                    <input 
+                        type="file" 
+                        name="" id="update-dp" 
+                        accept=".jpg, .png, .jpeg"
+                        maxLength={200000}
+                        onChange={(e) => handleFileSubmit(e)} required />
+                    
+                    <label htmlFor="update-dp" id="dp-upload">
+                        Update Profile Picture
+                    </label>
 
-                <label id="post-title" >About</label>
-                <input className="el4"
-                    type="text" 
-                    value={formData.about}
-                    onChange={(e) => setFormData({...formData, about : e.target.value})}
-                    maxLength={100} required />
+                    <label>About</label>
+                    <input className="el4"
+                        type="text" 
+                        value={formData.about}
+                        onChange={(e) => setFormData({...formData, about : e.target.value})}
+                        maxLength={100} required />
 
-                <label id="post-message" htmlFor="" >Interests</label>
+                    <label htmlFor="" >Interests</label>
 
-                <input className="el4"
-                    type="text" 
-                    value={formData.message}
-                    maxLength={150}
-                    onChange={(e) => setFormData({...formData, interests : e.target.value})} required />
+                    <input className="el4"
+                        type="text" 
+                        value={formData.interests}
+                        maxLength={150}
+                        onChange={(e) => setFormData({...formData, interests : e.target.value})} required />
 
 
-                <Button onClick={onSubmitHandler} content={"Update-Info"} />
-            </form>
+                    <Button onClick={onSubmitHandler} content={"Update-Info"} />
+                    <Toaster/>
+                </form>
+            </div>
         </div>
+        
     )
 }
 

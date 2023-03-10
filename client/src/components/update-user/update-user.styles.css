@@ -1,0 +1,36 @@
+.user-update-container{
+    width: 100%;
+    padding: 2em 0;
+}
+
+.user-update-wrapper{
+    margin: 0 auto;
+    width: 85%;
+    max-width: 300px;
+    background-color: white;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+.user-update-wrapper img{
+    width: 100%;
+    height: auto;
+}
+
+#update-dp{
+    display: none;
+}
+
+#dp-upload{
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 5px;
+    color: white;
+    background-color: #6366f1;
+}

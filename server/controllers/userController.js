@@ -2,6 +2,23 @@ import mongoose from "mongoose"
 import UserModel from "../model/user.js"
 import { createTokenUser } from "../utils/createTokenUser.js"
 
+export const getAllUsers = async (req, res) => {
+    try {
+        const allUsers = await UserModel.find({})
+        console.log(allUsers)
+        const users = allUsers.reduce((acc, {_id, name, profilePicture}) => {
+            acc[_id] = {name, profilePicture};
+            return acc;
+          }, {});
+        console.log(users)
+        res.status(200).json(users)
+    } catch (error) {
+        console.log(error)
+        res.send("Something Went wrong")
+    }
+    
+}
+
 export const getSingleUser = async (req, res) => {
     const { id : _id } = req.params
     if(!mongoose.Types.ObjectId.isValid(_id)){

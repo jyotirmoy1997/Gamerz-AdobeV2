@@ -11,8 +11,9 @@ const UserInfo = ({user}) => {
             <img src={ user.profilePicture.length > 1 ? user.profilePicture : dp } alt="" height={150} width={150} />
             <div className="user-details">
                 <h3>{user.name}</h3>
-                <h4>About : {user.about ? user.about : "Update About"} <Link to="/user/update-user"><FiEdit /></Link> </h4>
-                <p>Interests : {user.interests.length === 0 ?  "Add Interests" : user.interests} <FiEdit /></p>
+                <h4>About : {user.about ? user.about : "Update About"}  </h4>
+                <p>Interests : {user.interests.length === 0 ?  "Add Interests" : user.interests}</p>
+                <h5>Update Info <Link to="/user/update-user"><FiEdit /></Link></h5>
             </div>
         </div>
         <Post creator={user.userId} username={user.name} />

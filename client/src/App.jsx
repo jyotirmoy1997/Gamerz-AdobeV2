@@ -12,6 +12,7 @@ import NotFoundRoute from './routes/not-found/not-found.routes'
 import { Fragment } from 'react'
 import ExistingLogin from './routes/existing-login/existing-login.component'
 import UpdateUser from './components/update-user/update-user.component'
+import ShowFullPost from './components/show-full-post/show-full-post.component'
 
 const App = () => {
   const userAvailable = useSelector(userStatus) === "loggedIn"
@@ -27,6 +28,9 @@ const App = () => {
           <Route path="/user/update-user" element={<UpdateUser />} />
           <Route path="/user/newsfeed" element={<NewsFeed />} />
           <Route path="/posts">
+            <Route path="fullpost">
+              <Route path=":postId" element={<ShowFullPost />} />
+            </Route>
             <Route path=":postId" element={<UpdatePost />} />
           </Route>
       </Route>

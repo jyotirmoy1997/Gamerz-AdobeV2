@@ -3,10 +3,22 @@ import axios from "axios";
 
 
 const initialState = {
+    allUsers : [],
     user : {},
     status : 'loggedOut',
     error : null
 }
+
+export const getAllUsers = createAsyncThunk('users/getAllUsers', async(formData) => {
+    try{
+        const response = await axios.get('http://localhost:5000/api/v1/users/getAllUsers')
+        return response.data
+    }
+    catch(error){
+        return error.response
+    }
+})
+
 
 export const signInUser = createAsyncThunk('users/signInUser', async(formData) => {
     try{
@@ -54,6 +66,9 @@ const userSlice = createSlice({
                 state.error = null;
             }
         })
+        .addCase(getAllUsers.fulfilled, (state, action) => {
+            state.allUsers = action.payload
+        })
         .addCase(updateUser.fulfilled, (state, action) => {
             state.user = action.payload
         })
@@ -72,6 +87,7 @@ const userSlice = createSlice({
 
 
 export const selectUser = (state) => state.users.user
+export const selectAllUser = (state) => state.users.allUsers
 export const userStatus = (state) => state.users.status
 export const userError = (state) => state.users.error
 

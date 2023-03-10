@@ -1,8 +1,9 @@
 import ReactionComponent from "../reactions/reaction.component"
 import {dateConverter} from "../../utils/dateConverter"
+import { Link } from "react-router-dom"
 
-const NFPostCard = ({post, reactionList}) => {
-    // const username = 
+const NFPostCard = ({post, user, reactionList}) => {
+    console.log(user)
     return(
         <div className="single-post">
             <h2>{post.title} </h2>
@@ -11,10 +12,11 @@ const NFPostCard = ({post, reactionList}) => {
             <h5>{post.message}</h5>
             <ReactionComponent 
                 post={post._id} 
-                user={post.creatorId}
+                user={user.userId}
                 reactionList={reactionList}
             />
             <p className="date-show"> {dateConverter(post.createdAt)}</p>
+            <p><Link to={`/posts/fullpost/${post._id}`}>Show Full Post</Link></p>
         </div>
     )
 }

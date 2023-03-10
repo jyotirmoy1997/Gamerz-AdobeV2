@@ -19,7 +19,7 @@ const NewsFeed = () => {
             {
                 userNewsFeedPosts.map((post) => {
                     return(
-                        < NFPostCard key={post._id} post={post} reactionList={reactionList} />
+                        < NFPostCard key={post._id} user={user} post={post} reactionList={reactionList} />
                     )
                 })
             }
