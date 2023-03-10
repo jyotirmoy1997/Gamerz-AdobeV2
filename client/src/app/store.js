@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import postsReducer from '../features/posts/postSlice';
 import userReducer from '../features/user/userSlice';
 import reactionReducer from '../features/reactions/reactionSlice';
+import commentReducer from "../features/comments/commentSlice"
 import { combineReducers } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   posts: postsReducer,
   users: userReducer,
   reactions: reactionReducer,
+  comments : commentReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

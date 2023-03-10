@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAllUsers, selectAllUser } from "../../features/user/userSlice"
 import { AiFillLike, AiFillHeart } from 'react-icons/ai';
 import { BsRocketTakeoffFill } from 'react-icons/bs';
+import Avatar from "../avatar/avatar.component";
 import defaultDp from "../../../assets/dp.jpg"
 import "./show-reactions.styles.css"
 
 const ShowReactions = ({reaction}) => {
-    const [activeReaction, setActiveReaction] = useState(null)
+    const [activeReaction, setActiveReaction] = useState("likes")
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getAllUsers())
     }, [])
     const allUsers = useSelector(selectAllUser)
-    console.log(allUsers)
-    console.log(reaction[`${activeReaction}`])
+    // console.log(allUsers)
+    // console.log(reaction[`${activeReaction}`])
     return(
         <div className="show-reactions-wrapper">
             <div className="show-reactions-icons-container">
@@ -33,9 +34,7 @@ const ShowReactions = ({reaction}) => {
                     reaction[`${activeReaction}`] && 
                     reaction[`${activeReaction}`].map((id) => {
                         return(
-                            <div><img src={
-                                allUsers[`${id}`].profilePicture.length > 1 ?  allUsers[`${id}`].profilePicture.length : defaultDp
-                            } alt="" srcset="" height={50} width={50} /> <span>{allUsers[`${id}`].name}</span></div>
+                            <Avatar allUsers={allUsers} id={id} />
                         )
                     })
                 }

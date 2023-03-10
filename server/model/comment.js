@@ -1,13 +1,17 @@
 import mongoose from "mongoose"
 
 const commentSchema = new mongoose.Schema({
-    user : {
+    userId : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'User'
     },
     comment : {
         type : String,
         default : ""
+    },
+    postId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Posts'
     }
 })
 

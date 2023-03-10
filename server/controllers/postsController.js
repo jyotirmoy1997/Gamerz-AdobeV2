@@ -13,20 +13,6 @@ export const getPosts =  async (req, res) => {
 }
 
 
-// // Get Posts for a single user
-// export const getSingleUserPost =  async (req, res) => {
-//     const {id} = req.params
-//     console.log(id)
-//     res.send("Reach")
-//     // try {
-//     //     const posts = await PostMessage.find({_id : id})
-//     //     res.status(200).json(posts)
-//     // } catch (error) {
-//     //     res.status(404).json({ message : "Something Went Wrong !"})
-//     // }   
-// }
-
-
 
 // Create a post
 export const createPost = async (req, res) => {

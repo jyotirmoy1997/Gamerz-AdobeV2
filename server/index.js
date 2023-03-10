@@ -7,6 +7,7 @@ import postRouter from "./routes/postsRoute.js"
 import authRouter from "./routes/authRoute.js"
 import userRouter from "./routes/userRoute.js"
 import reactionRouter from "./routes/reactionsRoute.js"
+import commentRouter from "./routes/commentRoutes.js"
 import morgan from "morgan"
 import cookieParser from "cookie-parser"
 
@@ -33,6 +34,7 @@ server.use('/api/v1/posts', postRouter)
 server.use('/api/v1/auth', authRouter)
 server.use('/api/v1/users', userRouter)
 server.use('/api/v1/reactions', reactionRouter)
+server.use('/api/v1/comments', commentRouter)
 
 const PORT = process.env.PORT || 5000
 
