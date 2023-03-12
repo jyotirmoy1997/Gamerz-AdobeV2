@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const BASE_URL = "https://gamerz-adobe.onrender.com"
 
 const initialState = {
     reactionsArray : [],
@@ -9,33 +10,33 @@ const initialState = {
 }
 
 export const fetchReactions = createAsyncThunk('reactions/fetchReactions', async () => {
-    const response = await axios.get("http://localhost:5000/api/v1/reactions/getAllReactions")
+    const response = await axios.get(`${BASE_URL}/api/v1/reactions/getAllReactions`)
     return response.data
 })
 
 export const addNewReaction = createAsyncThunk('reactions/addNewReaction', async (postId) => {
-    const response = await axios.post("http://localhost:5000/api/v1/reactions/createReactions", 
+    const response = await axios.post(`${BASE_URL}/api/v1/reactions/createReactions`, 
     {post : postId})
     return response.data
 })
 
 export const updateReaction = createAsyncThunk('reactions/updatePosts', async ({postId, user, type}) => {
     if(type === "like"){
-        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateLikes", {
+        const response = await axios.patch(`${BASE_URL}/api/v1/reactions/updateLikes`, {
             post : postId,
             user
         })
         return response.data
     }
     else if(type === "heart"){
-        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateHearts", {
+        const response = await axios.patch(`${BASE_URL}/api/v1/reactions/updateHearts`, {
             post : postId,
             user
         })
         return response.data
     }
     else if(type === "rocket"){
-        const response = await axios.patch("http://localhost:5000/api/v1/reactions/updateRockets", {
+        const response = await axios.patch(`${BASE_URL}/api/v1/reactions/updateRockets`, {
             post : postId,
             user
         })
@@ -46,7 +47,7 @@ export const updateReaction = createAsyncThunk('reactions/updatePosts', async ({
 
 export const deleteReaction = createAsyncThunk('reactions/deleteReaction', async (postId) => {
     console.log("Delete Reaction", postId)
-    const response = await axios.delete(`http://localhost:5000/api/v1/reactions/deleteReaction/${postId}`)
+    const response = await axios.delete(`${BASE_URL}/api/v1/reactions/deleteReaction/${postId}`)
     return response.data
 })
 

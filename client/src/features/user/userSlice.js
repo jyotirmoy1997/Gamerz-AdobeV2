@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const BASE_URL = "https://gamerz-adobe.onrender.com"
 
 const initialState = {
     allUsers : [],
@@ -11,7 +12,7 @@ const initialState = {
 
 export const getAllUsers = createAsyncThunk('users/getAllUsers', async() => {
     try{
-        const response = await axios.get('http://localhost:5000/api/v1/users/getAllUsers')
+        const response = await axios.get(`${BASE_URL}/api/v1/users/getAllUsers`)
         return response.data
     }
     catch(error){
@@ -23,7 +24,7 @@ export const getAllUsers = createAsyncThunk('users/getAllUsers', async() => {
 
 export const signInUser = createAsyncThunk('users/signInUser', async(formData) => {
     try{
-        const response = await axios.post('http://localhost:5000/api/v1/auth/sign-in', 
+        const response = await axios.post(`${BASE_URL}/api/v1/auth/sign-in`, 
         {...formData}, { withCredentials: true })
         return response.data
     }
@@ -34,7 +35,7 @@ export const signInUser = createAsyncThunk('users/signInUser', async(formData) =
 
 export const updateUser = createAsyncThunk('users/updateUser', async(formData) => {
     try{
-        const response = await axios.patch('http://localhost:5000/api/v1/users/updateUser', 
+        const response = await axios.patch(`${BASE_URL}/api/v1/users/updateUser`, 
         {...formData}, { withCredentials: true })
         return response.data
     }
@@ -44,7 +45,7 @@ export const updateUser = createAsyncThunk('users/updateUser', async(formData) =
 })
 
 export const logOutUser = createAsyncThunk('users/logOutUser', async() => {
-    const response = await axios.post('http://localhost:5000/api/v1/auth/logout', { withCredentials: true })
+    const response = await axios.post(`${BASE_URL}/api/v1/auth/logout`, { withCredentials: true })
     return response.data
 })
 

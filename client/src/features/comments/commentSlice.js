@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const BASE_URL = "https://gamerz-adobe.onrender.com"
 
 const initialState = {
     commentsArray : [],
@@ -9,23 +10,23 @@ const initialState = {
 }
 
 export const fetchComments = createAsyncThunk('comments/fetchComments', async (postId) => {
-    const response = await axios.get(`http://localhost:5000/api/v1/comments/${postId}`)
+    const response = await axios.get(`${BASE_URL}/api/v1/comments/${postId}`)
     return response.data
 })
 
 export const addNewComment = createAsyncThunk('comments/addNewComment', async (commentObj) => {
-    const response = await axios.post("http://localhost:5000/api/v1/comments/addNewComment", commentObj)
+    const response = await axios.post("${BASE_URL}/api/v1/comments/addNewComment", commentObj)
     return response.data
 })
 
 // export const updateComment = createAsyncThunk('Comments/updatePosts', async (comment) => {
-//     const response = await axios.patch("http://localhost:5000/api/v1/comments/updateLikes", comment)
+//     const response = await axios.patch("${BASE_URL}/api/v1/comments/updateLikes", comment)
 //     return response.data
 // })
 
 
 export const deleteComment = createAsyncThunk('Comments/deleteComment', async (commentId) => {
-    const response = await axios.delete(`http://localhost:5000/api/v1/comments/${commentId}`)
+    const response = await axios.delete(`${BASE_URL}/api/v1/comments/${commentId}`)
     return response.data
 })
 

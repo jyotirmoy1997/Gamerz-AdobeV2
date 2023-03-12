@@ -3,6 +3,7 @@ import axios from "axios";
 import { addNewReaction } from "../reactions/reactionSlice";
 import { deleteReaction } from "../reactions/reactionSlice";
 
+const BASE_URL = "https://gamerz-adobe.onrender.com"
 
 const initialState = {
     postsArray : [],
@@ -11,24 +12,24 @@ const initialState = {
 }
 
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-    const response = await axios.get("http://localhost:5000/api/v1/posts")
+    const response = await axios.get(`${BASE_URL}/api/v1/posts`)
     return response.data
 })
 
 export const addNewPost = createAsyncThunk('posts/addNewPost', async (newPost, {dispatch}) => {
-    const response = await axios.post("http://localhost:5000/api/v1/posts", newPost)
+    const response = await axios.post(`${BASE_URL}/api/v1/posts`, newPost)
     const postId = response.data
     dispatch(addNewReaction(postId))
     return response.data
 })
 
 export const updatePost = createAsyncThunk('posts/updatePosts', async ({postId, formData}) => {
-    const response = await axios.patch(`http://localhost:5000/api/v1/posts/${postId}`, formData)
+    const response = await axios.patch(`${BASE_URL}/api/v1/posts/${postId}`, formData)
     return response.data
 })
 
 export const deletePost = createAsyncThunk('posts/deletePosts', async (postId, {dispatch}) => {
-    const response = await axios.delete(`http://localhost:5000/api/v1/posts/${postId}`)
+    const response = await axios.delete(`${BASE_URL}/api/v1/posts/${postId}`)
     dispatch(deleteReaction(postId))
     return response.data
 })
