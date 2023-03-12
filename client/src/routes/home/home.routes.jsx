@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router"
 import bg from "../../../assets/wallpaper.jpg"
-import bg2 from "../../../assets/7459.jpg"
+import bg2 from "../../../assets/7459(1).jpg"
 import { Link } from "react-router-dom"
 import "./home.styles.css"
 import { FiExternalLink } from 'react-icons/fi';
+import Footer from "../../components/footer/footer.component"
 // import { ExternalLinkIcon } from '@chakra-ui/icons'
 
 
@@ -22,11 +23,7 @@ const Home = () => {
                 <Link to="/log-in"><button>Join <FiExternalLink/> </button></Link>
                 
             </div>
-            {/* <button onClick={redirectHandler}>Welcome</button> */}
-            {/* <img src={bg} alt="" />
-            <div className="home-intro">
-                <h1>Build Your Community</h1>
-            </div> */}
+            <Footer />
         </div>
     )
 }

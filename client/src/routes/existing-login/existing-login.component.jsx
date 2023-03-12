@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router"
 import { useEffect } from "react"
+import { Oval } from  'react-loader-spinner'
+import "./existing-login.styles.css"
 
 const ExistingLogin = () => {
     const navigate = useNavigate()
@@ -8,8 +10,23 @@ const ExistingLogin = () => {
     }, [])
     
     return(
-        <div>
-            <h1>You are Already Logged-In</h1>
+        <div className="spinner-outer">
+            <div >
+                <Oval
+                    height={80}
+                    width={80}
+                    color="#4fa94d"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel='oval-loading'
+                    secondaryColor="#4fa94d"
+                    strokeWidth={2}
+                    strokeWidthSecondary={2}
+                
+                />
+            </div>
+            
         </div>
     )
 }

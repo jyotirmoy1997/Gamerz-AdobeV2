@@ -15,14 +15,15 @@ const ShowComments = ({comments}) => {
             <h3>Comments</h3>
             <div className="comments-wrapper">
                 {
-                    comments.map((comment) => {
+                    comments.length < 1 ? <h4>No Comments on this post</h4> : (comments.map((comment) => {
                         return(
                             <div key={comment._id}>
                                 <Avatar allUsers={allUsers} id={comment.userId} />
                                 <p>{comment.comment}</p>
                             </div>
                         )
-                    })
+                    }))
+                    
                 }
             </div>
         </div>

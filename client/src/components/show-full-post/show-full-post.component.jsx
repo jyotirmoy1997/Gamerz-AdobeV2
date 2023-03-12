@@ -8,9 +8,8 @@ import { addNewComment } from "../../features/comments/commentSlice"
 import ShowReactions from "../show-reactions/show-reactions.component"
 import "./show-full-post.styles.css"
 import { useEffect, useState } from "react"
-import { fetchComments, selectAllComments, commentListStatus } from "../../features/comments/commentSlice"
+import { fetchComments, selectAllComments } from "../../features/comments/commentSlice"
 import ShowComments from "../show-comments/show-comments.component"
-import axios from "axios"
 
 
 const ShowFullPost = () => {

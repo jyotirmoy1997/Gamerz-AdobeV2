@@ -1,13 +1,12 @@
-import "./sign-in.form.styles.css"
-import Button from "../button/button.component"
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router"
+import { useSelector } from "react-redux"
 import { signInUser, userStatus } from "../../features/user/userSlice"
 import { validateEmail, validatePassword } from "../../utils/validators"
-import { useSelector } from "react-redux"
 import { userError} from "../../features/user/userSlice"
-import axios from "axios"
+import Button from "../button/button.component"
+import "./sign-in.form.styles.css"
 
 
 const initialState = {
@@ -61,36 +60,19 @@ const SignInForm = () => {
         if(formData.password === ''){
             setPasswordError('Password cannot be Empty')
         }
-        // if(validateEmail(formData.email) && validatePassword(formData.password)){
-
+        if(validateEmail(formData.email) && validatePassword(formData.password)){
             dispatch(signInUser(formData))
-            // setTimeout(() => {
-            //     navigate('/user/timeline')
-            // }, 2000)
-            // if(userLogStatus === 'loggedOut'){
-            //     console.log("Hit")
-            //     console.log(userErr)
-            //     setEmailError('*Email or password is wrong')
-            // }
-            // else{
-            //     console.log('Error')
-            // }
-           
-            // if(userInfo.err === "Wrong Password" && userInfo.status === 'loggedOut')
-                // navigate('/user/timeline')
-                
-            
-        // }
-        // else if(validateEmail(formData.email) && !validatePassword(formData.password)){
-        //     setPasswordError('*Enter a valid password')
-        // }
-        // else if(!validateEmail(formData.email) && validatePassword(formData.password)){
-        //     setEmailError('*Enter a valid email')
-        // }
-        // else{
-        //     setEmailError('*Enter a valid email')
-        //     setPasswordError('*Enter a valid password')
-        // }
+        }
+        else if(validateEmail(formData.email) && !validatePassword(formData.password)){
+            setPasswordError('*Enter a valid password')
+        }
+        else if(!validateEmail(formData.email) && validatePassword(formData.password)){
+            setEmailError('*Enter a valid email')
+        }
+        else{
+            setEmailError('*Enter a valid email')
+            setPasswordError('*Enter a valid password')
+        }
         
     }
 
@@ -125,9 +107,7 @@ const SignInForm = () => {
                 
 
                 <Button onClick={onSubmitHandler} className="el7" content={"Sign-In"} />
-                
-                {/* <button onClick={onSubmitHandler} className="el7">Sign-In</button> */}
-                {/* <GoogleButton className="el8" /> */}
+
             </form>
             
         </div>

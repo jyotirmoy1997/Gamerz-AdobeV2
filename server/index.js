@@ -17,11 +17,12 @@ const server = express()
 
 
 // Middlewares
+
 server.use(express.json({limit: '50mb'}));
-server.use(express.urlencoded({limit: '50mb'}));
-server.use(cors({ credentials: true, origin: true }))
-server.use(morgan('tiny'))
 server.use(cookieParser(process.env.JWT_SECRET))
+
+server.use(cors({ credentials: true, origin: true, optionsSuccessStatus: 200, }))
+server.use(morgan('tiny'))
 
 
 server.get("/", (req, res) => {

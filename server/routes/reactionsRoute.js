@@ -6,6 +6,8 @@ import { getAllReactions,
     createReactions,
     deleteReaction
  } from "../controllers/reactionsController.js"
+import {authenticateUser} from "../middlewares/authentication.js"
+
 
 const reactionRouter = express.Router()
 

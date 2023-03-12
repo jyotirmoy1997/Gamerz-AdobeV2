@@ -2,9 +2,8 @@ import { useState } from "react"
 import Button from "../button/button.component"
 import axios from "axios"
 import "./sign-up.form.styles.css"
-import defaultDp from "../../../assets/dp.jpg"
 import toast, { Toaster } from 'react-hot-toast';
-import { convertToBase64 } from "../../utils/base64Converter";
+import { validateEmail, validatePassword } from "../../utils/validators"
 
 const initialState = {
     name : '',
@@ -27,12 +26,23 @@ const SignUpForm = () => {
     const onSubmitHandler = async (event) => {
         
         event.preventDefault()
+
         if(formData.password !== formData.confirmPassword){
             setPasswordError('*Passwords do not match')
             return
         }
+        if(validateEmail(formData.email) && !validatePassword(formData.password)){
+            setPasswordError('*Password must be of atleast 8 characters with a combination of uppercase, lowercase and symbols')
+            return
+        }
+        else if(!validateEmail(formData.email) && validatePassword(formData.password)){
+            setEmailError('*Enter a valid email')
+            return
+        }
         try {
             const response = await axios.post('http://localhost:5000/api/v1/auth/sign-up', {...formData})
+            setPasswordError('')
+            setEmailError('')
             setFormData(initialState)
             notify()
             

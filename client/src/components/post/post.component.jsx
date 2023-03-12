@@ -10,7 +10,6 @@ import fileUploadIcon from "./assets/upload.png"
 
 
 const Post = ({creator, username}) => {
-    const [imageFile, setImageFile] = useState('')
     const [titleError, setTitleError] = useState('')
     const [messageError, setMessageError] = useState('')
     const [formData, setFormData] = useState({
@@ -55,11 +54,9 @@ const Post = ({creator, username}) => {
         console.log(file)
         if(file.size > 200000){
             alert("File Size is too Big...Please upload files with smaller size")
-            setImageFile('')
             return
         }
         const base64File = await convertToBase64(file)
-        setImageFile(base64File)
         setFormData({...formData, image: base64File})
     }
     return(

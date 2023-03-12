@@ -6,7 +6,6 @@ import { updatePost, deletePost } from "../../features/posts/postSlice"
 import { useNavigate } from "react-router"
 import toast, { Toaster } from 'react-hot-toast';
 import { convertToBase64 } from "../../utils/base64Converter"
-import Button from "../button/button.component"
 import fileUploadIcon from "./assets/upload.png"
 import { AiFillDelete } from 'react-icons/ai';
 import { selectUser } from "../../features/user/userSlice"

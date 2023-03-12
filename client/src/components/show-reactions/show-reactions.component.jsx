@@ -4,7 +4,6 @@ import { getAllUsers, selectAllUser } from "../../features/user/userSlice"
 import { AiFillLike, AiFillHeart } from 'react-icons/ai';
 import { BsRocketTakeoffFill } from 'react-icons/bs';
 import Avatar from "../avatar/avatar.component";
-import defaultDp from "../../../assets/dp.jpg"
 import "./show-reactions.styles.css"
 
 
