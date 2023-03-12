@@ -9,12 +9,13 @@ const initialState = {
     error : null
 }
 
-export const getAllUsers = createAsyncThunk('users/getAllUsers', async(formData) => {
+export const getAllUsers = createAsyncThunk('users/getAllUsers', async() => {
     try{
         const response = await axios.get('http://localhost:5000/api/v1/users/getAllUsers')
         return response.data
     }
     catch(error){
+        console.log(error)
         return error.response
     }
 })
@@ -44,7 +45,6 @@ export const updateUser = createAsyncThunk('users/updateUser', async(formData) =
 
 export const logOutUser = createAsyncThunk('users/logOutUser', async() => {
     const response = await axios.post('http://localhost:5000/api/v1/auth/logout', { withCredentials: true })
-    console.log("logout", response)
     return response.data
 })
 

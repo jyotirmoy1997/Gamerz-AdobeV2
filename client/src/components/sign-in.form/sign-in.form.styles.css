@@ -62,3 +62,10 @@
     margin-left: 20px;
     font-size: 14px;
 }
+
+@media(max-width : 850px){
+    .wrapper-sign-in{
+        width: 95%;
+        padding: 2em 0;
+    }
+}

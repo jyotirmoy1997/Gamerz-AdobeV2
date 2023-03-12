@@ -31,7 +31,7 @@ const PostCard = ({post, reactionList, username}) => {
             <h2>{post.title} </h2>
             <img src={post.image} alt="" srcSet="" height={200} width={300} />
             <h4>{username}</h4>
-            <h5>{post.message}</h5>
+            <h5>{post.message.length > 100 ? post.message.substring(0, 99) : post.message}</h5>
             <ReactionComponent 
                 post={post._id} 
                 user={post.creatorId}

@@ -1,11 +1,15 @@
-import { useSelector } from "react-redux"
-import { selectAllUser } from "../../features/user/userSlice"
-import defaultDp from "../../../assets/dp.jpg"
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { selectAllUser, getAllUsers } from "../../features/user/userSlice"
 import Avatar from "../avatar/avatar.component"
 import "./show-comments.styles.css"
 
 const ShowComments = ({comments}) => {
     const allUsers = useSelector(selectAllUser)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getAllUsers())
+    }, [])
     return(
         <div className="comments-outer">
             <h3>Comments</h3>

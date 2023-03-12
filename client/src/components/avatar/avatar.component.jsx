@@ -1,14 +1,13 @@
-import defaultDp from "../../../assets/dp.jpg"
 import "./avatar.styles.css"
+import defaultDp from "../../../assets/dp.jpg"
 
 const Avatar = ({allUsers, id}) => {
-    console.log(allUsers[`${id}`].profilePicture)
     return(
     <div className="avatar-wrapper">
         <img 
             src={allUsers[`${id}`].profilePicture.length > 1 ?  
                 allUsers[`${id}`].profilePicture : defaultDp} 
-            alt="" srcset="" 
+            alt="" srcSet="" 
             height={50} 
             width={50}
         /> 

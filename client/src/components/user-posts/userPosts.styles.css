@@ -11,3 +11,10 @@
     
     /* flex-direction: column; */
 }
+
+
+@media (max-width : 850px) {
+    .user-post-wrapper{
+        flex-direction: column;
+    }
+}

@@ -1,9 +1,8 @@
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 import { useSelector, useDispatch } from "react-redux"
 import { fetchPosts, deletePost} from "../../features/posts/postSlice"
 import { selectAllPosts } from "../../features/posts/postSlice"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router"
-import axios from "axios"
 
 
 const Posts = () => {
@@ -16,7 +15,6 @@ const Posts = () => {
     }, [dispatch])
 
     const updatePostHandler = (postId) => {
-        console.log(postId)
         navigate(`/posts/${postId}`)
     }
 

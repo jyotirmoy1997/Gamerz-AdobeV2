@@ -14,8 +14,9 @@ const Home = () => {
     }
     return(
         <div className="home-wrapper">
-            <h1>Welcome to Gamerz Adobe, A Place Where Gamers Assemble</h1>
+            <h1>Welcome to Gamerz Adobe</h1>
             <img src={bg} alt="" />
+            <h1>A Place Where Gamers Assemble</h1>
             <div className="home-cover">
                 <img src={bg2} alt="" srcSet="" />
                 <Link to="/log-in"><button>Join <FiExternalLink/> </button></Link>

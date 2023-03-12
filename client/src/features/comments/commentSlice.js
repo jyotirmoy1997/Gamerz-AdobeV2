@@ -24,10 +24,10 @@ export const addNewComment = createAsyncThunk('comments/addNewComment', async (c
 // })
 
 
-// export const deleteComment = createAsyncThunk('Comments/deleteComment', async (commentId) => {
-//     const response = await axios.delete(`http://localhost:5000/api/v1/comments/deleteComment/${commentId}`)
-//     return response.data
-// })
+export const deleteComment = createAsyncThunk('Comments/deleteComment', async (commentId) => {
+    const response = await axios.delete(`http://localhost:5000/api/v1/comments/${commentId}`)
+    return response.data
+})
 
 
 const commentSlice = createSlice({
@@ -59,9 +59,9 @@ const commentSlice = createSlice({
         .addCase(addNewComment.fulfilled, (state, action) => {
             state.commentsArray.push(action.payload)
         })
-        // .addCase(deleteComment.fulfilled, (state, action) => {
-        //     return
-        // })
+        .addCase(deleteComment.fulfilled, (state, action) => {
+            return
+        })
     }
 })
 

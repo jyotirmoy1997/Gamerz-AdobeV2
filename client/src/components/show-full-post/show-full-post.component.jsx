@@ -10,6 +10,8 @@ import "./show-full-post.styles.css"
 import { useEffect, useState } from "react"
 import { fetchComments, selectAllComments, commentListStatus } from "../../features/comments/commentSlice"
 import ShowComments from "../show-comments/show-comments.component"
+import axios from "axios"
+
 
 const ShowFullPost = () => {
     const [comment, setComment] = useState('')
@@ -21,15 +23,16 @@ const ShowFullPost = () => {
     const comments = useSelector(selectAllComments).filter((comment) => comment.postId === postId)
     const reactionToShow = reactionList.filter((reaction) => reaction.post === postId)[0]
     const dispatch = useDispatch()
+
     useEffect(() => {
         dispatch(fetchComments())
     }, [])
+    
     if(!postToShow){
         return(
             <h1>Invalid Post Id</h1>
         )
     }
-    console.log(comments)
     const onCommentSubmitHandler = (e) => {
         e.preventDefault()
         if(comment.length > 1){
@@ -40,23 +43,25 @@ const ShowFullPost = () => {
         }
     }
     return(
-        <div className="fullpost-wrapper">
-            <div className="fullpost-wrapper-l1">
-                <img id="post-image" src={postToShow.image} alt="" />
-                <div className="fullpost-wrapper-inner">
-                    <h3 id="post-creator">{postToShow.creatorName}</h3>
-                    <h3 id="post-title">{postToShow.title}</h3>
-                    <h5 id="post-message">{postToShow.message}</h5>
+        <div className="full-post-container">
+            <div className="fullpost-wrapper">
+                <div className="fullpost-wrapper-l1">
+                    <img id="post-image" src={postToShow.image} alt="" />
+                    <div className="fullpost-wrapper-inner">
+                        <h3 id="post-creator">{postToShow.creatorName}</h3>
+                        <h3 id="post-title">{postToShow.title}</h3>
+                        <h5 id="post-message">{postToShow.message}</h5>
+                    </div>
                 </div>
-            </div>
-            <div className="fullpost-wrapper-l2" >
-                <ShowReactions id="show-reactions" reaction={reactionToShow}/>
-                <ShowComments id="show-comment" comments={comments} />
-                <form action="" method="post">
-                    Post a Comment
-                    <input type="text" value={comment} onChange={(e) => setComment(e.target.value)} maxLength={150} />
-                    <Button onClick={onCommentSubmitHandler} content={"Post Comment"}/>
-                </form>
+                <div className="fullpost-wrapper-l2" >
+                    <ShowReactions id="show-reactions" reaction={reactionToShow}/>
+                    <ShowComments id="show-comment" comments={comments} />
+                    <form action="" method="post">
+                        Post a Comment
+                        <textarea type="text" value={comment} onChange={(e) => setComment(e.target.value)} maxLength={150} />
+                        <Button onClick={onCommentSubmitHandler} content={"Post Comment"}/>
+                    </form>
+                </div>
             </div>
         </div>
     )

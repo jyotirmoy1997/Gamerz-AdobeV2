@@ -2,7 +2,6 @@ import { useDispatch } from "react-redux"
 import { AiFillLike, AiFillHeart } from 'react-icons/ai';
 import { BsRocketTakeoffFill } from 'react-icons/bs';
 import { updateReaction } from "../../features/reactions/reactionSlice"
-
 import "./reaction.styles.css"
 
 
@@ -16,8 +15,6 @@ const ReactionComponent = ({post, user, reactionList}) => {
             <h3>loading...</h3>
         )
     }
-
-    // console.log("Reaction Component Rendered")
 
     const likeSubmitHandler = async () => {
         dispatch(updateReaction({postId : post, user, type : "like"}))

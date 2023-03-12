@@ -3,3 +3,9 @@
     width: 100%;
     justify-content: space-evenly;
 }
+
+@media(max-width : 850px){
+    .log-in-wrapper{
+        flex-direction: column;
+    }
+}

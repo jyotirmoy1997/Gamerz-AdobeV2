@@ -3,6 +3,7 @@ import UserModel from "../model/user.js"
 import { createTokenUser } from "../utils/createTokenUser.js"
 
 export const getAllUsers = async (req, res) => {
+    console.log("Hit")
     try {
         const allUsers = await UserModel.find({})
         console.log(allUsers)

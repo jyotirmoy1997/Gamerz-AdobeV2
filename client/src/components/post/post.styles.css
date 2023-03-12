@@ -1,6 +1,7 @@
 .post-wrapper{
+    max-width: 400px;
     padding: 2em;
-    width: 40%;
+    width: 97%;
     max-width: 300px;
     border-radius: 8px;
     background-color: white;

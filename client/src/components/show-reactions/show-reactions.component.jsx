@@ -7,6 +7,8 @@ import Avatar from "../avatar/avatar.component";
 import defaultDp from "../../../assets/dp.jpg"
 import "./show-reactions.styles.css"
 
+
+
 const ShowReactions = ({reaction}) => {
     const [activeReaction, setActiveReaction] = useState("likes")
     const dispatch = useDispatch()
@@ -14,18 +16,17 @@ const ShowReactions = ({reaction}) => {
         dispatch(getAllUsers())
     }, [])
     const allUsers = useSelector(selectAllUser)
-    // console.log(allUsers)
-    // console.log(reaction[`${activeReaction}`])
     return(
         <div className="show-reactions-wrapper">
+            <h3>Reactions</h3>
             <div className="show-reactions-icons-container">
-                <div onClick={() => setActiveReaction("likes")}>
+                <div className="reaction-icons" onClick={() => setActiveReaction("likes")}>
                     <AiFillLike size={30}/>{reaction.likeCount}
                 </div>
-                <div onClick={() => setActiveReaction("hearts")}>
+                <div className="reaction-icons" onClick={() => setActiveReaction("hearts")}>
                     <AiFillHeart size={30}/>{reaction.heartCount}
                 </div>
-                <div onClick={() => setActiveReaction("rockets")}>
+                <div className="reaction-icons" onClick={() => setActiveReaction("rockets")}>
                     <BsRocketTakeoffFill size={30}/>{reaction.rocketCount}
                 </div>
             </div>
@@ -34,7 +35,7 @@ const ShowReactions = ({reaction}) => {
                     reaction[`${activeReaction}`] && 
                     reaction[`${activeReaction}`].map((id) => {
                         return(
-                            <Avatar allUsers={allUsers} id={id} />
+                            <Avatar key={id} allUsers={allUsers} id={id} />
                         )
                     })
                 }

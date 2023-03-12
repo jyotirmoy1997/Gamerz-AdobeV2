@@ -72,3 +72,11 @@
     margin-left: 20px;
     font-size: 14px;
 }
+
+
+@media(max-width : 850px){
+    .wrapper-signup{
+        width: 90%;
+        padding: 2em 0;
+    }
+}

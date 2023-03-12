@@ -1,6 +1,6 @@
 .show-reactions-wrapper{
-    border: 1px solid black;
-    border-radius: 5px;
+    /* border: 1px solid black;
+    border-radius: 5px; */
     padding: 0.75em;
     /* background-color: brown; */
     width: 28%;
@@ -8,18 +8,23 @@
     flex-direction: column;
 }
 
+.show-reactions-wrapper h3{
+    margin: 0;
+    margin-left: 1.5em;
+    padding: none;
+}
+
 .show-reactions-icons-container{
+    
+    padding: 1.5em;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-.show-reactions-icons-container div{
-    padding: 0.75em;
-    border: 1px solid black;
-}
-
 .show-reactions-list-container{
+    margin-left: 1.2em;
+    width: 100%;
     height: 200px;
     overflow-y: auto;
     display: flex;
@@ -28,4 +33,25 @@
 
 .show-reactions-list-container div{
     padding: 0.75em;
+}
+
+.reaction-icons{
+    cursor: pointer;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75em;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.reaction-icons:hover{
+    background-color: aqua;
+}
+
+@media (max-width : 850px){
+    .show-reactions-wrapper{
+        width: 100%;
+    }
 }

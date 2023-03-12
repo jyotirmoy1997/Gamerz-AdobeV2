@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom"
 import ReactionComponent from "../reactions/reaction.component"
 import {dateConverter} from "../../utils/dateConverter"
-import { Link } from "react-router-dom"
+
 
 const NFPostCard = ({post, user, reactionList}) => {
     console.log(user)

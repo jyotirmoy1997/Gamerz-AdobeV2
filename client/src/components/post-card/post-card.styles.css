@@ -16,14 +16,19 @@
     height: auto;
 }
 
+.single-post p{
+    justify-content: center;
+}
+
 .date-show{
+    justify-content: center;
     font-size: 12px;
 }
 
 .single-post p{
     width: 60%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -51,4 +56,11 @@
 
 .edit-post:hover::after{
     visibility: visible;
+}
+
+@media (max-width : 850px){
+    .single-post{
+        width: 80%;
+        margin: 0 auto;
+    }
 }

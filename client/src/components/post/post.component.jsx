@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { addNewPost } from "../../features/posts/postSlice"
-import { fetchReactions } from "../../features/reactions/reactionSlice"
-import fileUploadIcon from "./assets/upload.png"
 import Button from "../button/button.component"
 import { convertToBase64 } from "../../utils/base64Converter"
+import { addNewPost } from "../../features/posts/postSlice"
+import { fetchReactions } from "../../features/reactions/reactionSlice"
 import "./post.styles.css"
+import fileUploadIcon from "./assets/upload.png"
 
 
 
