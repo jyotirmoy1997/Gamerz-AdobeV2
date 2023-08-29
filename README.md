@@ -1,4 +1,4 @@
-![](/public/banner.png)
+![](https://res.cloudinary.com/dst1eqcmo/image/upload/v1693297321/GitHub%20Readme/Gamerz-Adobe/banner_qnee4e.png)
 
 # Gamerz Adobe - A MERN Stack Social Media Application Prototype
 
@@ -23,10 +23,10 @@
 * #### Used JSON Web Tokens (JWT) to authenticate users.
 
 ## News Feed Page
-![](/public/News_Feed_Page.png)
+![](https://res.cloudinary.com/dst1eqcmo/image/upload/v1693297325/GitHub%20Readme/Gamerz-Adobe/News_Feed_Page_nurrxh.png)
 
 ## Timeline Page
-![](/public/Timeline_Page.png)
+![](https://res.cloudinary.com/dst1eqcmo/image/upload/v1693297324/GitHub%20Readme/Gamerz-Adobe/Timeline_page_v4l9if.png)
 
 ## Post Page
-![](/public/Post_Page.png)
+![](https://res.cloudinary.com/dst1eqcmo/image/upload/v1693297325/GitHub%20Readme/Gamerz-Adobe/Post_Page_ebudq4.png)
